@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".View.MenuSearch">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="검색"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:paddingTop="100px"
+            android:paddingLeft="70px"
+             />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text1"
+            android:text="  무엇을 찾고 있나요 ?"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:layout_marginTop="50px"
+            android:paddingTop="30px"
+            android:paddingLeft="50px"
+            android:paddingBottom="30px"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:background="@drawable/edittext_border"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_text"
+            android:text="제품 찾아보기"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="100px"
+            android:paddingLeft="70px"/>
+
+        <Button
+            android:id="@+id/entire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="67px"
+            android:layout_marginRight="50px"
+            android:background="#00ff0000"
+            android:text="모두보기"
+            android:textStyle="normal"
+            android:textColor="#5F5F5F"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_text" />
+
+        <include
+            android:id="@+id/product_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/entire"
+            android:layout_marginTop="35px"
+            layout="@layout/fragment_search_product_list" />
+
+        <include
+            android:id="@+id/home_ad_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/product_list"
+            layout="@layout/fragment_ad_banner"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
