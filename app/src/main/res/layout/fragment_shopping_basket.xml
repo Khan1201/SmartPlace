@@ -24,13 +24,23 @@
         android:paddingLeft="70px"
         />
 
-        <ListView
-            android:id="@+id/listView"
+        <View
+            android:id="@+id/basket_dividing_line1"
+            android:layout_width="match_parent"
+            android:layout_height="2.3dp"
+            android:background="@color/black"
+            android:layout_marginTop="50px"
+            android:layout_marginLeft="70px"
+            app:layout_constraintTop_toBottomOf="@+id/basket_text1"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/basket_text1"
+            android:background="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/basket_dividing_line1"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="70px"/>
+            android:paddingLeft="70px"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

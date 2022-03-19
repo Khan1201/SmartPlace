@@ -1,69 +1,85 @@
 package com.example.gradportfolio.View;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
+import com.example.gradportfolio.Model.BasketData;
+import com.example.gradportfolio.Presenter.RecyclerAdapter;
 import com.example.gradportfolio.R;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 
 public class ShoppingBasket extends Fragment {
 
-    ArrayList<Product> products;
-    ListView productListView;
-    private static CustomAdapter customAdapter;
+    private RecyclerAdapter adapter;
+    private View rootView;
+    Context ct;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_shopping_basket, container, false);
-        products = new ArrayList<>();
-            products.add(new Product("Bath", "https://www.google.com/url?sa=i&url=https%3A%2F%2Farfu.co.kr%2Fproduct%2F%25EB%25A7%259D%25EA%25B3%25A0%25EC%25B2%25B4%25EC%2596%25B4c338pu%2F1703%2F&psig=AOvVaw1uoEK8AiXWKJyGjMH-8Vqs&ust=1647673010409000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJDf67aKz_YCFQAAAAAdAAAAABAD"));
-        products.add(new Product("Desk", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5qHNjhtjMD4YWH3UP0rm4tKwxCL.jpg"));
-        products.add(new Product("Note", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5qHNjhtjMD4YWH3UP0rm4tKwxCL.jpg"));
-        products.add(new Product("Mirror", "https://image.tmdb.org/t/p/w600_and_h900_bestv2/5qHNjhtjMD4YWH3UP0rm4tKwxCL.jpg"));
-
-        productListView = (ListView) rootView.findViewById(R.id.listView);
-        customAdapter = new CustomAdapter(getContext(),products);
-        productListView.setAdapter(customAdapter);
-        productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
-                //각 아이템을 분간 할 수 있는 position과 뷰
-                String selectedItem = (String) view.findViewById(R.id.textView_name).getTag().toString();
-                Toast.makeText(getContext(), "Clicked: " + position +" " + selectedItem, Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
+        rootView = inflater.inflate(R.layout.fragment_shopping_basket, container, false);
+        ct = container.getContext();
+        init();
+        getData();
         return rootView;
     }
-}
 
-class Product {
-    private String name;
-    private String thumb_url;
+    private void init() {
+        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ct);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
-    public Product(String name, String thumb_url) {
-        this.name = name;
-        this.thumb_url = thumb_url;
-    }
-    public String getName() {
-        return name;
+        adapter = new RecyclerAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
-    public String getThumb_url() {
-        return thumb_url;
+    private void getData() {
+        // 임의의 데이터입니다.
+        List<String> listTitle = Arrays.asList("욕조", "침대", "장식품", "의자", "레인지", "사무실 책상", "서랍", "타일");
+        List<String> listContent = Arrays.asList(
+                "120,000원",
+                "150,000원",
+                "30,000원",
+                "43,000원",
+                "60,000원",
+                "39,000원",
+                "50.000원",
+                "27,000원"
+        );
+        List<Integer> listResId = Arrays.asList(
+                R.drawable.image_bath,
+                R.drawable.image_bed,
+                R.drawable.image_deco,
+                R.drawable.image_furniture,
+                R.drawable.image_living,
+                R.drawable.image_office,
+                R.drawable.image_storage,
+                R.drawable.image_textile
+        );
+        for (int i = 0; i < listTitle.size(); i++) {
+            // 각 List의 값들을 data 객체에 set 해줍니다.
+            BasketData data = new BasketData();
+            data.setTitle(listTitle.get(i));
+            data.setContent(listContent.get(i));
+            data.setResId(listResId.get(i));
+
+            // 각 값이 들어간 data를 adapter에 추가합니다.
+            adapter.addItem(data);
+        }
+
+        // adapter의 값이 변경되었다는 것을 알려줍니다.
+        adapter.notifyDataSetChanged();
     }
+
 }
