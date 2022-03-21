@@ -1,11 +1,11 @@
 package com.example.gradportfolio.Presenter;
 
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,12 +21,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     // adapter에 들어갈 list 입니다.
     private ArrayList<BasketData> listData = new ArrayList<>();
 
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_product, parent, false);
         return new ItemViewHolder(view);
     }
 
@@ -53,20 +54,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         private TextView textView1;
         private TextView textView2;
+        private TextView textView3;
         private ImageView imageView;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            textView1 = itemView.findViewById(R.id.product_name);
-            textView2 = itemView.findViewById(R.id.product_price);
-            imageView = itemView.findViewById(R.id.imageView_thumb);
+            textView1 = itemView.findViewById(R.id.recycle_brand_title);
+            textView2 = itemView.findViewById(R.id.recycle_product_name);
+            textView3 = itemView.findViewById(R.id.recycle_product_price);
+            imageView = itemView.findViewById(R.id.recycle_product_image);
         }
 
         void onBind(BasketData data) {
-            textView1.setText(data.getTitle());
-            textView2.setText(data.getContent());
-            imageView.setImageResource(data.getResId());
+            textView1.setText(data.getBrandTitle());
+            textView2.setText(data.getProductName());
+            textView3.setText(data.getProductPrice());
+            imageView.setImageResource(data.getImageId());
         }
     }
 }
