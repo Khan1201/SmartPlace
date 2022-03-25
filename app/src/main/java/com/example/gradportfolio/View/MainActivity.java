@@ -2,6 +2,7 @@ package com.example.gradportfolio.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -9,14 +10,15 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.gradportfolio.R;
+import com.example.gradportfolio.View.MypageLogin;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    FragmentManager fragmentManager;
-    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_menu);
+
+
+
         getSupportFragmentManager().beginTransaction().add(R.id.main_frame, new Home()).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -47,4 +52,5 @@ public class MainActivity extends AppCompatActivity {
         }
         });
     }
+
 }
