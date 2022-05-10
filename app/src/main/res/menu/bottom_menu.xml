@@ -23,10 +23,5 @@
         android:icon="@drawable/ic_baseline_shopping_basket_24"
         android:title="장바구니" />
 
-    <item
-        android:id="@+id/fourth_tab"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_account_box_24"
-        android:title="마이페이지" />
+
 </menu>

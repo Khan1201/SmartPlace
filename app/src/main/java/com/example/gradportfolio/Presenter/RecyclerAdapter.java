@@ -37,7 +37,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //22.04.07 클릭 이벤트 수정중
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml(양식)을 inflate 시킵니다.(화면에 보여불 리스트 개수만큼 inflate)
@@ -59,6 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
                 intent.putExtra("title", listData.get(position).getBrandTitle());
                 intent.putExtra("image", listData.get(position).getImageId());
                 intent.putExtra("product_name", listData.get(position).getProductName());
+                intent.putExtra("price",listData.get(position).getProductPrice());
                 v.getContext().startActivity(intent);
 
             }

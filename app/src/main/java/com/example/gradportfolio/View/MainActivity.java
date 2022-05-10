@@ -44,9 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.third_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new ShoppingBasket()).commit();
                         break;
-                    case R.id.fourth_tab:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MypageLogin()).commit();
-                        break;
+
             }
                 return true;
         }
