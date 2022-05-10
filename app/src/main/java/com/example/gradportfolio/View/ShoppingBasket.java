@@ -31,6 +31,7 @@ public class ShoppingBasket extends Fragment {
     private View holderView;
     Context ct;
 
+
     ArrayAdapter<Integer> spinner_adapter;
     Integer[] listProductQuantity;
 
