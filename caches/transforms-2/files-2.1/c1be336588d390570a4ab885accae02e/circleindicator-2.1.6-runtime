@@ -1,0 +1,16 @@
+me.relex.circleindicator.BaseCircleIndicator
+me.relex.circleindicator.BaseCircleIndicator$IndicatorCreatedListener
+me.relex.circleindicator.BaseCircleIndicator$ReverseInterpolator
+me.relex.circleindicator.BuildConfig
+me.relex.circleindicator.CircleIndicator
+me.relex.circleindicator.CircleIndicator$1
+me.relex.circleindicator.CircleIndicator$2
+me.relex.circleindicator.CircleIndicator2
+me.relex.circleindicator.CircleIndicator2$1
+me.relex.circleindicator.CircleIndicator2$2
+me.relex.circleindicator.CircleIndicator3
+me.relex.circleindicator.CircleIndicator3$1
+me.relex.circleindicator.CircleIndicator3$2
+me.relex.circleindicator.Config
+me.relex.circleindicator.Config$Builder
+me.relex.circleindicator.SnackbarBehavior

@@ -1,0 +1,137 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.android.tools.build",
+    "module": "apkzlib",
+    "version": "7.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "apkzlib-7.1.2.jar",
+          "url": "apkzlib-7.1.2.jar",
+          "size": 202884,
+          "sha512": "409f635ef3c1239cedc900dd35716d334783f371326756b08c0b16e8823aa44239912c29c4e2d55a60841c4540537aa42404b5cac05bd3569c54bb4671347b0e",
+          "sha256": "534f447b3d8420a861147a8f8d9f37cd9a59967b10802ba61e914db563db8e77",
+          "sha1": "616c7740a13662a7cd1d377b5d9c4e5649afe1ca",
+          "md5": "5bd6b7344cdfc41f02bd9693ca3358d8"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.code.findbugs",
+          "module": "jsr305",
+          "version": {
+            "requires": "1.3.9"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "23.0"
+          }
+        },
+        {
+          "group": "org.bouncycastle",
+          "module": "bcpkix-jdk15on",
+          "version": {
+            "requires": "1.56"
+          }
+        },
+        {
+          "group": "org.bouncycastle",
+          "module": "bcprov-jdk15on",
+          "version": {
+            "requires": "1.56"
+          }
+        },
+        {
+          "group": "com.android.tools.build",
+          "module": "apksig",
+          "version": {
+            "requires": "7.1.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "apkzlib-7.1.2.jar",
+          "url": "apkzlib-7.1.2.jar",
+          "size": 202884,
+          "sha512": "409f635ef3c1239cedc900dd35716d334783f371326756b08c0b16e8823aa44239912c29c4e2d55a60841c4540537aa42404b5cac05bd3569c54bb4671347b0e",
+          "sha256": "534f447b3d8420a861147a8f8d9f37cd9a59967b10802ba61e914db563db8e77",
+          "sha1": "616c7740a13662a7cd1d377b5d9c4e5649afe1ca",
+          "md5": "5bd6b7344cdfc41f02bd9693ca3358d8"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "apkzlib-7.1.2-javadoc.jar",
+          "url": "apkzlib-7.1.2-javadoc.jar",
+          "size": 699550,
+          "sha512": "696d81663fb75cb84e7c82d7e10ed8eeb17509209ee0d1b08a55e6ec1ff323884ff6584c5804ea43c3c251f8e5f57b0324baba27ba3e9d01135ec8cf72649e9b",
+          "sha256": "39c8a50a332c880a47813fd31003c78e91cf10e1b4574257eb7f6933ac3f6518",
+          "sha1": "00ffc956296ff71f637043e3606651705ee8c1f0",
+          "md5": "99afbf04ba807f2782a36985c8604947"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "apkzlib-7.1.2-sources.jar",
+          "url": "apkzlib-7.1.2-sources.jar",
+          "size": 175862,
+          "sha512": "bd63a32abf23ba41fcb98e3cb58b9db2c044aa4ccbfb81b3bf96a924b0f05f0f501d262281f68e85ccab77bc755da26effc45ddbc3b32a3f47d85774aa6cb3f5",
+          "sha256": "5a42d6daf3ea6c48d71a6fcd36dca4793294515ccdd4cd0122e697248425307f",
+          "sha1": "5dccd89e070c84d22ca9d74b9e8617c96563b107",
+          "md5": "80b0d3309ee4a707fdf0ca700f419bc1"
+        }
+      ]
+    }
+  ]
+}
