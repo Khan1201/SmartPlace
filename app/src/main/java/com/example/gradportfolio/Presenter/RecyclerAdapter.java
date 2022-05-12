@@ -18,10 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.BasketData;
 
 import com.example.gradportfolio.R;
+import com.example.gradportfolio.View.MainActivity;
 import com.example.gradportfolio.View.ProductDetail;
+import com.example.gradportfolio.View.ShoppingBasket;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>
@@ -30,9 +33,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     // adapter에 들어갈 list 입니다.
     private ArrayList<BasketData> listData = new ArrayList<BasketData>();
     private Intent intent;
-
-
-
 
     @NonNull
     @Override
@@ -49,15 +49,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, @SuppressLint("RecyclerView") int position) {
         // 22.04.10 클릭 이벤트 처리중
-        holder.imageView.setImageResource(listData.get(position).getImageId());
-        holder.textView1.setText(listData.get(position).getProductName());
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 intent = new Intent(v.getContext(), ProductDetail.class);
                 intent.putExtra("number" ,position);
                 intent.putExtra("title", listData.get(position).getBrandTitle());
-                intent.putExtra("image", listData.get(position).getImageId());
+                intent.putExtra("image", listData.get(position).getImageUrl());
                 intent.putExtra("product_name", listData.get(position).getProductName());
                 intent.putExtra("price",listData.get(position).getProductPrice());
                 v.getContext().startActivity(intent);
@@ -114,7 +112,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             textView2.setText(data.getProductName());
             textView3.setText(data.getProductPrice());
             spinner.setAdapter(data.getSpinnerAdapter());
-            imageView.setImageResource(data.getImageId());
+            Glide.with(ShoppingBasket.ct).load(data.getImageUrl()).into(imageView);
         }
     }
 }

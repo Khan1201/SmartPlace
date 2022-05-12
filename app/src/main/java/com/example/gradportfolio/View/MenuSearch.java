@@ -1,5 +1,6 @@
 package com.example.gradportfolio.View;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -37,6 +38,8 @@ public class MenuSearch extends Fragment {
     SearchRecyclerAdapter2 searchRecyclerAdapter2;
     LinearLayoutManager linearLayoutManager2;
 
+    public static Context ct;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class MenuSearch extends Fragment {
         intiProduct(rootView);
         secondList(rootView);
 
+        ct = getContext();
 
         // Inflate the layout for this fragment
         return rootView;
@@ -88,13 +92,10 @@ public class MenuSearch extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(searchRecyclerAdapter);
 
-        productItemArrayList.add(new SearchData("1인 원룸 휴대용 욕조","Alloso", "₩ 120,000",R.drawable.image_bath));
-        productItemArrayList.add(new SearchData("일반 헤드형 수납 침대","Meister", "₩ 150,000",R.drawable.image_bed));
-        productItemArrayList.add(new SearchData("심플 검은말 장식품 2P","Casamia", "₩ 30,000",R.drawable.image_deco));
-        productItemArrayList.add(new SearchData("고급 1인용 사무실 의자","Hansaem", "₩ 43,000",R.drawable.image_furniture));
-        productItemArrayList.add(new SearchData("가정용 4구 레인지","iLoom", "₩ 60,000",R.drawable.image_living));
-        productItemArrayList.add(new SearchData("사무용 6인 책상 블루","Ikea", "₩ 39,000",R.drawable.image_office));
-        productItemArrayList.add(new SearchData("3단 가정용 서랍","Uami", "₩ 50,000",R.drawable.image_storage));
+        productItemArrayList.add(new SearchData(MainActivity.productList.get(0).getProduct_name(),MainActivity.productList.get(0).getBrand_name(), MainActivity.productList.get(0).getPrice(),MainActivity.productList.get(0).getUrl()));
+        productItemArrayList.add(new SearchData(MainActivity.productList.get(1).getProduct_name(),MainActivity.productList.get(1).getBrand_name(), MainActivity.productList.get(1).getPrice(),MainActivity.productList.get(1).getUrl()));
+        productItemArrayList.add(new SearchData(MainActivity.productList.get(2).getProduct_name(),MainActivity.productList.get(2).getBrand_name(), MainActivity.productList.get(2).getPrice(),MainActivity.productList.get(2).getUrl()));
+        productItemArrayList.add(new SearchData(MainActivity.productList.get(3).getProduct_name(),MainActivity.productList.get(3).getBrand_name(), MainActivity.productList.get(3).getPrice(),MainActivity.productList.get(3).getUrl()));
 
 
         searchRecyclerAdapter.notifyDataSetChanged();

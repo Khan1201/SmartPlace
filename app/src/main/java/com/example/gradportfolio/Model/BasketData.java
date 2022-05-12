@@ -1,5 +1,6 @@
 package com.example.gradportfolio.Model;
 
+import android.content.Context;
 import android.widget.ArrayAdapter;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public class BasketData {
     private String product_price;
     private Integer[] product_quantity;
     private ArrayAdapter<Integer> spinner_adapter;
-    private int imageId;
+    private String image_url;
 
     public String getBrandTitle() {
         return brand_title;
@@ -37,12 +38,12 @@ public class BasketData {
         this.product_price = product_price;
     }
 
-    public int getImageId() {
-        return imageId;
+    public String getImageUrl() {
+        return image_url;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setImageUrl(String image_url) {
+        this.image_url = image_url;
     }
 
     public ArrayAdapter<Integer> getSpinnerAdapter() {

@@ -13,10 +13,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.ProductData;
 import com.example.gradportfolio.R;
-import com.example.gradportfolio.View.MypageLogin;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -39,12 +37,9 @@ import java.util.Map;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import com.example.gradportfolio.View.Home;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    static Integer page;
     BottomNavigationView bottomNavigationView;
     static RequestQueue requestQueue; // 주로 1개만 선언
     public static ArrayList<ProductData> productList = new ArrayList<>();
@@ -68,15 +63,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.first_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new Home()).commit();
-                        page = 1;
                         break;
                     case R.id.second_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MenuSearch()).commit();
-                        page = 2;
                         break;
                     case R.id.third_tab:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new ShoppingBasket()).commit();
-                        page = 3;
                         break;
 //                    case R.id.fourth_tab:
 //                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, new MypageLogin()).commit();
@@ -88,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void makeRequest() {
-        String url = "http://172.30.1.27:3000/data";
+        String url = "http://203.228.1.110:3001/data";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -119,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // 응답 실패
+
             }
         }) {
             @Override

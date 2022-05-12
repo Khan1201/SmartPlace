@@ -1,16 +1,16 @@
 package com.example.gradportfolio.Model;
 
 public class SearchData {
-    String productName;
-    String brand_title;
-    String product_price;
-    int imageId;
-    public SearchData(String productName, String brand_title, String product_price, int imageId)
+    private String productName;
+    private String brand_title;
+    private String product_price;
+    private String imageUrl;
+    public SearchData(String productName, String brand_title, String product_price, String imageUrl)
     {
         this.productName = productName;
         this.brand_title = brand_title;
         this.product_price = product_price;
-        this.imageId = imageId;
+        this.imageUrl = imageUrl;
     }
 
     public String getProductName(){
@@ -22,8 +22,8 @@ public class SearchData {
     public String getProduct_price(){
         return product_price;
     }
-    public int getImageId(){
-        return imageId;
+    public String getImageUrl(){
+        return imageUrl;
     }
 
     public void setProductName(String productName){
@@ -38,8 +38,8 @@ public class SearchData {
         this.product_price = product_price;
     }
 
-    public void setImageId(int imageId){
-        this.imageId = imageId;
+    public void setImageUrl(String imageUrl){
+        this.imageUrl = imageUrl;
     }
 
 

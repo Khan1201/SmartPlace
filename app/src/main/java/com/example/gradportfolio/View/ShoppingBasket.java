@@ -29,7 +29,7 @@ public class ShoppingBasket extends Fragment {
     private RecyclerAdapter adapter;
     private View rootView;
     private View holderView;
-    Context ct;
+    public static Context ct;
 
 
     ArrayAdapter<Integer> spinner_adapter;
@@ -80,56 +80,15 @@ public class ShoppingBasket extends Fragment {
     }
 
     private void getData() {
-        // 임의의 데이터입니다.
-        List<String> listBrandTitle = Arrays.asList(
-                "Alloso",
-                "Meister",
-                "Casamia",
-                "Hansaem",
-                "iLoom",
-                "Ikea",
-                "Uami",
-                "Samik"
-        );
-        List<String> listProductName = Arrays.asList(
-                "1인 원룸 휴대용 욕조",
-                "일반 헤드형 수납 침대",
-                "심플 검은말 장식품 2P",
-                "고급 1인용 사무실 의자",
-                "가정용 4구 레인지",
-                "사무용 6인 책상 블루",
-                "3단 가정용 서랍",
-                "가정 인테리어용 타일"
-        );
-        List<String> listProductPrice = Arrays.asList(
-                "₩ 120,000",
-                "₩ 150,000",
-                "₩ 30,000",
-                "₩ 43,000",
-                "₩ 60,000",
-                "₩ 39,000",
-                "₩ 50.000",
-                "₩ 27,000"
-        );
-        List<Integer> listImageId = Arrays.asList(
-                R.drawable.image_bath,
-                R.drawable.image_bed,
-                R.drawable.image_deco,
-                R.drawable.image_furniture,
-                R.drawable.image_living,
-                R.drawable.image_office,
-                R.drawable.image_storage,
-                R.drawable.image_textile
-        );
 
-        for (int i = 0; i < listBrandTitle.size(); i++) {
+        for (int i = 0; i < MainActivity.productList.size(); i++) {
             // 각 List의 값들을 data 객체에 set 해줍니다.
             BasketData data = new BasketData();
             data.setSpinnerAdapter(spinner_adapter);
-            data.setBrandTitle(listBrandTitle.get(i));
-            data.setProductName(listProductName.get(i));
-            data.setProductPrice(listProductPrice.get(i));
-            data.setImageId(listImageId.get(i));
+            data.setBrandTitle(MainActivity.productList.get(i).getBrand_name());
+            data.setProductName(MainActivity.productList.get(i).getProduct_name());
+            data.setProductPrice(MainActivity.productList.get(i).getPrice());
+            data.setImageUrl(MainActivity.productList.get(i).getUrl());
 
             // 각 값이 들어간 data를 adapter에 추가합니다.
             adapter.addItem(data);

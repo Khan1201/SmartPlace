@@ -7,14 +7,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.gradportfolio.R;
 
 public class ProductDetail extends AppCompatActivity {
 
-    private  int image;
     private  Intent intent;
     private int number;
-    private String title, product_name, product_price;
+    private String title, product_name, product_price, image;
     private ImageView imageView1, imageView2, imageView3;
     private TextView textView1, textView2, textView3, textView4;
 
@@ -26,7 +26,7 @@ public class ProductDetail extends AppCompatActivity {
         intent = getIntent();
         number = intent.getIntExtra("number", -1);
         title = intent.getStringExtra("title");
-        image = intent.getIntExtra("image", -1);
+        image = intent.getStringExtra("image");
         product_name = intent.getStringExtra("product_name");
         product_price = intent.getStringExtra("price");
 
@@ -44,7 +44,8 @@ public class ProductDetail extends AppCompatActivity {
         switch (number)
         {
             case 0: //1인 원룸 휴대용 욕조
-                imageView1.setImageResource(image); //클릭 시 가져오는 이미지
+
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
 
                 textView1.setText(title); // 클릭 시 가져오는 타이틀
 
@@ -61,10 +62,13 @@ public class ProductDetail extends AppCompatActivity {
                 break;
 
             case 1: // 일반 헤드형 수납 침대
-                imageView1.setImageResource(image);
+
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
+
                 textView1.setText(title);
                 textView2.setText(product_name);
-                imageView1.setImageResource(image); //클릭 시 가져오는 이미지
+
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
 
                 textView1.setText(title); // 클릭 시 가져오는 타이틀
 
@@ -81,7 +85,7 @@ public class ProductDetail extends AppCompatActivity {
                 break;
 
             case 2://심플 검은말 장식품  2P
-                imageView1.setImageResource(image);
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
                 textView1.setText(title);
                 textView2.setText(product_name);
                 textView1.append("\n");
@@ -97,7 +101,7 @@ public class ProductDetail extends AppCompatActivity {
                 break;
 
             case 3://고급 1인용 사무실 의자
-                imageView1.setImageResource(image);
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
                 textView1.setText(title);
                 textView2.setText(product_name);
                 textView3.setText(product_price);
@@ -111,7 +115,7 @@ public class ProductDetail extends AppCompatActivity {
                 break;
 
             case 4://가정용 4구 레인지
-                imageView1.setImageResource(image);
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
                 textView1.setText(title);
                 textView2.setText(product_name);
                 textView1.append("\n");
@@ -125,7 +129,7 @@ public class ProductDetail extends AppCompatActivity {
                 break;
 
             case 5://사무용 6인 책상 블루
-                imageView1.setImageResource(image);
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
                 textView1.setText(title);
                 textView2.setText(product_name);
                 textView1.append("\n");
@@ -140,7 +144,7 @@ public class ProductDetail extends AppCompatActivity {
                 break;
 
             case 6://3단 가정용 서랍
-                imageView1.setImageResource(image);
+                Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
                 textView1.setText(title);
                 textView2.setText(product_name);
                 textView1.append("\n");
