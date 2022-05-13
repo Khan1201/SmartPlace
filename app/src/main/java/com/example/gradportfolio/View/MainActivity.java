@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gradportfolio.Model.ProductData;
+import com.example.gradportfolio.Model.SqlLiteHelper;
 import com.example.gradportfolio.R;
 
 import com.android.volley.AuthFailureError;
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     static RequestQueue requestQueue; // 주로 1개만 선언
     public static ArrayList<ProductData> productList = new ArrayList<>();
+    SqlLiteHelper helper;
+    public static SQLiteDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         makeRequest(); //DB접근 후 모든 DB를 객체리스트에 담아옴
+        startSqlLite();
 
         bottomNavigationView = findViewById(R.id.bottom_menu);
 
@@ -124,5 +130,11 @@ public class MainActivity extends AppCompatActivity {
 
         request.setShouldCache(false);  // 이전 응답 결과를 사용하지 않는다.
         requestQueue.add(request);
+    }
+
+    void startSqlLite(){
+        helper = new SqlLiteHelper(MainActivity.this, "InternalDb.db", null, 1);
+        db = helper.getWritableDatabase();
+        helper.onCreate(db);
     }
 }
