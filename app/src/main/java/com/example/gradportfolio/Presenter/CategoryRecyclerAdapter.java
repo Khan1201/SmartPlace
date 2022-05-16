@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.CategoryData;
 import com.example.gradportfolio.Model.Category_1;
 import com.example.gradportfolio.Model.SearchData;
@@ -29,6 +30,8 @@ public class  CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyc
         this.activity = activity;
     }
 
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -43,20 +46,20 @@ public class  CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyc
         holder.productName.setText(productItemArrayList.get(position).getProductName());
         holder.productPrice.setText(productItemArrayList.get(position).getProduct_price());
         holder.productTitle.setText(productItemArrayList.get(position).getBrand_title());
-        holder.image1.setImageResource(productItemArrayList.get(position).getImageId());
+        Glide.with(MenuSearch.ct).load(productItemArrayList.get(position).getImageUrl()).into(holder.image1);
 
-        //holder.image1.setOnClickListener(new View.OnClickListener() {
-           // @Override
-           // public void onClick(View v) {
-               // intent = new Intent(v.getContext(), Category_1.class);
-              //  intent.putExtra("number" ,position);
-                //intent.putExtra("title", productItemArrayList.get(position).getBrand_title());
-                //intent.putExtra("image",productItemArrayList.get(position).getImageId());
-                //intent.putExtra("product_name", productItemArrayList.get(position).getProductName());
-                //intent.putExtra("price",productItemArrayList.get(position).getProduct_price());
-                //v.getContext().startActivity(intent);
-//            }
-  //      });
+        holder.image1.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+         intent = new Intent(v.getContext(), ProductDetail.class);
+          intent.putExtra("number" ,position);
+        intent.putExtra("title", productItemArrayList.get(position).getBrand_title());
+        intent.putExtra("image",productItemArrayList.get(position).getImageUrl());
+        intent.putExtra("product_name", productItemArrayList.get(position).getProductName());
+        intent.putExtra("price",productItemArrayList.get(position).getProduct_price());
+        v.getContext().startActivity(intent);
+            }
+              });
 
 
 

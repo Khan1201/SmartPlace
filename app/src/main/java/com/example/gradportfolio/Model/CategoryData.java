@@ -5,8 +5,8 @@ public class CategoryData {
     String productName;
     String brand_title;
     String product_price;
-    int imageId;
-    public CategoryData(String productName, String brand_title, String product_price, int imageId)
+    String imageId;
+    public CategoryData(String productName, String brand_title, String product_price, String imageId)
     {
         this.productName = productName;
         this.brand_title = brand_title;
@@ -23,7 +23,7 @@ public class CategoryData {
     public String getProduct_price(){
         return product_price;
     }
-    public int getImageId(){
+    public String getImageUrl(){
         return imageId;
     }
 
@@ -39,7 +39,7 @@ public class CategoryData {
         this.product_price = product_price;
     }
 
-    public void setImageId(int imageId){
+    public void setImageId(String imageId){
         this.imageId = imageId;
     }
 }

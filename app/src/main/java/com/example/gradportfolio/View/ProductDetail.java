@@ -42,6 +42,7 @@ public class ProductDetail extends AppCompatActivity {
         number = intent.getIntExtra("number", -1);
         title = intent.getStringExtra("title");
         image = intent.getStringExtra("image");
+
         product_name = intent.getStringExtra("product_name");
         product_price = intent.getStringExtra("price");
 
@@ -62,6 +63,7 @@ public class ProductDetail extends AppCompatActivity {
             case 0: //1인 원룸 휴대용 욕조
 
                 Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
+
 
                 textView1.setText(title); // 클릭 시 가져오는 타이틀
 
@@ -85,6 +87,7 @@ public class ProductDetail extends AppCompatActivity {
                 textView2.setText(product_name);
 
                 Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
+
 
                 textView1.setText(title); // 클릭 시 가져오는 타이틀
 
