@@ -5,14 +5,14 @@ public class SearchData {
     private String brand_title;
     private String product_price;
     private String imageUrl;
-    private int imgId;
-    public SearchData(String productName, String brand_title, String product_price, String imageUrl, int imgId)
+
+    public SearchData(String productName, String brand_title, String product_price, String imageUrl)
     {
         this.productName = productName;
         this.brand_title = brand_title;
         this.product_price = product_price;
         this.imageUrl = imageUrl;
-        this.imgId = imgId;
+
     }
 
     public String getProductName(){
@@ -27,7 +27,7 @@ public class SearchData {
     public String getImageUrl(){
         return imageUrl;
     }
-    public int getImgId(){return imgId;}
+
 
     public void setProductName(String productName){
         this.productName = productName;
@@ -45,7 +45,7 @@ public class SearchData {
         this.imageUrl = imageUrl;
     }
 
-    public void setImgId(int imgId){this.imgId = imgId;}
+
 
 
 
