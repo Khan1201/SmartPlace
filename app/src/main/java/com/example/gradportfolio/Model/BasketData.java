@@ -10,9 +10,9 @@ public class BasketData {
     private String brand_title;
     private String product_name;
     private String product_price;
-    private Integer[] product_quantity;
     private ArrayAdapter<Integer> spinner_adapter;
     private String image_url;
+    private Integer spinner_count;
 
     public String getBrandTitle() {
         return brand_title;

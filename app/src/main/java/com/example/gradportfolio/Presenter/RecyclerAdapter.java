@@ -4,10 +4,12 @@ package com.example.gradportfolio.Presenter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,8 +33,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
 {
     // adapter에 들어갈 list 입니다.
-    private ArrayList<BasketData> listData = new ArrayList<BasketData>();
+    public static ArrayList<BasketData> listData = new ArrayList<BasketData>();
     private Intent intent;
+    private String sql;
 
     @NonNull
     @Override
@@ -62,10 +65,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
             }
         });
+        holder.onBind(listData.get(position));
+
+        //삭제하기 버튼 클릭 시
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sql = "DELETE FROM ShoppingBasket WHERE url = " + "'" +
+                        listData.get(position).getImageUrl() + "'";
+                MainActivity.db.execSQL(sql);
+                listData.remove(position);
+                notifyDataSetChanged();
+
+            }
+
+        });
         // 생성된 ItemViewHolder에 데이터를 바인딩
         // 예를 들어 데이터가 스크롤 되어서 맨 위에있던 뷰 홀더(레이아웃) 객체가 맨 아래로 이동한다면,
         // 그 레이아웃은 재사용 하되 데이터는 새롭게 바뀔 것이다. 고맙게도 아래에서 새롭게 보여질 데이터의 인덱스 값이 position이라는 이름으로 사용가능하다.
-        holder.onBind(listData.get(position));
+
     }
 
     @Override
@@ -79,6 +97,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         listData.add(data);
     }
 
+    public void clearItem() {
+        // 초기화
+        listData.clear();
+    }
+
 
     // RecyclerView의 핵심인 ViewHolder 입니다.
     // 여기서 subView를 setting 해줍니다.
@@ -87,8 +110,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         private TextView textView1;
         private TextView textView2;
         private TextView textView3;
-        private Spinner spinner;
+        public  Spinner spinner;
         private ImageView imageView;
+        private Button deleteButton;
+        private Integer price;
+
 
         //22.04.07 클릭 이벤트 수정 중
         public void setItem(BasketData basketData){
@@ -104,7 +130,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             textView3 = itemView.findViewById(R.id.recycle_product_price);
             spinner = itemView.findViewById(R.id.recycle_spinner);
             imageView = itemView.findViewById(R.id.recycle_product_image);
-
+            deleteButton = itemView.findViewById(R.id.recycle_delete);
         }
 
         void onBind(BasketData data) {
