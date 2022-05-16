@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.gradportfolio.R;
@@ -37,11 +38,17 @@ public class Home extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Glide.with(context).load(MainActivity.productList.get(0).getUrl()).into(mainImage1);
-                Glide.with(context).load(MainActivity.productList.get(1).getUrl()).into(mainImage2);
-                Glide.with(context).load(MainActivity.productList.get(2).getUrl()).into(hdImage1);
-                Glide.with(context).load(MainActivity.productList.get(3).getUrl()).into(hdImage2);
-                swipeRefreshLayout.setRefreshing(false);
+                try {
+                    Glide.with(context).load(MainActivity.productList.get(0).getUrl()).into(mainImage1);
+                    Glide.with(context).load(MainActivity.productList.get(1).getUrl()).into(mainImage2);
+                    Glide.with(context).load(MainActivity.productList.get(2).getUrl()).into(hdImage1);
+                    Glide.with(context).load(MainActivity.productList.get(3).getUrl()).into(hdImage2);
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                catch(Exception e){
+                    Toast.makeText(context, "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
 
@@ -66,6 +73,7 @@ public class Home extends Fragment {
             mainImage2.setImageResource(R.drawable.image_loading);
             hdImage1.setImageResource(R.drawable.image_loading);
             hdImage2.setImageResource(R.drawable.image_loading);
+            Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
         }
 
 

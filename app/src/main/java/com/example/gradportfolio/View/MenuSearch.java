@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,7 +15,9 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.MenuList;
 import com.example.gradportfolio.Presenter.RecyclerAdapter;
 import com.example.gradportfolio.Presenter.SearchRecyclerAdapter;
@@ -32,6 +35,8 @@ public class MenuSearch extends Fragment {
     RecyclerView recyclerView;
     LinearLayoutManager linearLayoutManager;
     EditText searchET;
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
     RecyclerView recyclerView2;
     ArrayList<MenuList> mList;
@@ -92,10 +97,36 @@ public class MenuSearch extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(searchRecyclerAdapter);
 
-        productItemArrayList.add(new SearchData(MainActivity.productList.get(0).getProduct_name(),MainActivity.productList.get(0).getBrand_name(), MainActivity.productList.get(0).getPrice(),MainActivity.productList.get(0).getUrl()));
-        productItemArrayList.add(new SearchData(MainActivity.productList.get(1).getProduct_name(),MainActivity.productList.get(1).getBrand_name(), MainActivity.productList.get(1).getPrice(),MainActivity.productList.get(1).getUrl()));
-        productItemArrayList.add(new SearchData(MainActivity.productList.get(2).getProduct_name(),MainActivity.productList.get(2).getBrand_name(), MainActivity.productList.get(2).getPrice(),MainActivity.productList.get(2).getUrl()));
-        productItemArrayList.add(new SearchData(MainActivity.productList.get(3).getProduct_name(),MainActivity.productList.get(3).getBrand_name(), MainActivity.productList.get(3).getPrice(),MainActivity.productList.get(3).getUrl()));
+        swipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.swipe_layout_menu_search);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    productItemArrayList.add(new SearchData(MainActivity.productList.get(0).getProduct_name(), MainActivity.productList.get(0).getBrand_name(), MainActivity.productList.get(0).getPrice(), MainActivity.productList.get(0).getUrl()));
+                    productItemArrayList.add(new SearchData(MainActivity.productList.get(1).getProduct_name(), MainActivity.productList.get(1).getBrand_name(), MainActivity.productList.get(1).getPrice(), MainActivity.productList.get(1).getUrl()));
+                    productItemArrayList.add(new SearchData(MainActivity.productList.get(2).getProduct_name(), MainActivity.productList.get(2).getBrand_name(), MainActivity.productList.get(2).getPrice(), MainActivity.productList.get(2).getUrl()));
+                    productItemArrayList.add(new SearchData(MainActivity.productList.get(3).getProduct_name(), MainActivity.productList.get(3).getBrand_name(), MainActivity.productList.get(3).getPrice(), MainActivity.productList.get(3).getUrl()));
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                catch (Exception e){
+                    productItemArrayList.add(new SearchData(" ", "데이터 불러오기 실패","" , ""));
+                    Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
+
+
+        try {
+            productItemArrayList.add(new SearchData(MainActivity.productList.get(0).getProduct_name(), MainActivity.productList.get(0).getBrand_name(), MainActivity.productList.get(0).getPrice(), MainActivity.productList.get(0).getUrl()));
+            productItemArrayList.add(new SearchData(MainActivity.productList.get(1).getProduct_name(), MainActivity.productList.get(1).getBrand_name(), MainActivity.productList.get(1).getPrice(), MainActivity.productList.get(1).getUrl()));
+            productItemArrayList.add(new SearchData(MainActivity.productList.get(2).getProduct_name(), MainActivity.productList.get(2).getBrand_name(), MainActivity.productList.get(2).getPrice(), MainActivity.productList.get(2).getUrl()));
+            productItemArrayList.add(new SearchData(MainActivity.productList.get(3).getProduct_name(), MainActivity.productList.get(3).getBrand_name(), MainActivity.productList.get(3).getPrice(), MainActivity.productList.get(3).getUrl()));
+        }
+        catch (Exception e){
+            productItemArrayList.add(new SearchData(" ", "데이터 불러오기 실패","" , ""));
+            Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
+        }
 
 
         searchRecyclerAdapter.notifyDataSetChanged();
