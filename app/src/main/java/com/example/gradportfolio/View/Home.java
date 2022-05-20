@@ -2,6 +2,7 @@ package com.example.gradportfolio.View;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +30,6 @@ public class Home extends Fragment {
     private Context context;
     ImageView mainImage1, mainImage2, hdImage1, hdImage2;
     private SwipeRefreshLayout swipeRefreshLayout;
-    TextView text;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -100,8 +103,32 @@ public class Home extends Fragment {
                 }
             }
         });
-        return rootView;
 
+            WebView webView = rootView.findViewById(R.id.webView);
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+
+            String html = "<div style=\"height: 50px\">\n" +
+                    "\t\t\t\t<script src=\"https://ads-partners.coupang.com/g.js\"></script>\n" +
+                    "\t\t\t\t<script>\n" +
+                    "\t\t\t\t\tnew PartnersCoupang.G({\n" +
+                    "\t\t\t\t\t\t\"id\": 1,\n" +
+                    "\t\t\t\t\t\t\"height\": 80,\n" +
+                    "\t\t\t\t\t\t\"bordered\": true\n" +
+                    "\t\t\t\t\t});\n" +
+                    "\t\t\t\t</script>\t\t\n" +
+                    "\t\t</div>";
+            webView.loadData(html, "text/html", "UTF8");
+
+        return rootView;
     }
 
 }
