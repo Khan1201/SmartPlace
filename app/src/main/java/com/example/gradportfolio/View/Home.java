@@ -4,10 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +13,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.gradportfolio.R;
@@ -104,29 +102,29 @@ public class Home extends Fragment {
             }
         });
 
-            WebView webView = rootView.findViewById(R.id.webView);
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.setWebViewClient(new WebViewClient() {
-                @Override
-                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    return true;
-                }
-            });
+        WebView webView = rootView.findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            }
+        });
 
-            String html = "<div style=\"height: 50px\">\n" +
-                    "\t\t\t\t<script src=\"https://ads-partners.coupang.com/g.js\"></script>\n" +
-                    "\t\t\t\t<script>\n" +
-                    "\t\t\t\t\tnew PartnersCoupang.G({\n" +
-                    "\t\t\t\t\t\t\"id\": 1,\n" +
-                    "\t\t\t\t\t\t\"height\": 80,\n" +
-                    "\t\t\t\t\t\t\"bordered\": true\n" +
-                    "\t\t\t\t\t});\n" +
-                    "\t\t\t\t</script>\t\t\n" +
-                    "\t\t</div>";
-            webView.loadData(html, "text/html", "UTF8");
+        String html = "<div style=\"height: 50px\">\n" +
+                "\t\t\t\t<script src=\"https://ads-partners.coupang.com/g.js\"></script>\n" +
+                "\t\t\t\t<script>\n" +
+                "\t\t\t\t\tnew PartnersCoupang.G({\n" +
+                "\t\t\t\t\t\t\"id\": 1,\n" +
+                "\t\t\t\t\t\t\"height\": 80,\n" +
+                "\t\t\t\t\t\t\"bordered\": true\n" +
+                "\t\t\t\t\t});\n" +
+                "\t\t\t\t</script>\t\t\n" +
+                "\t\t</div>";
+        webView.loadData(html, "text/html", "UTF8");
 
         return rootView;
     }

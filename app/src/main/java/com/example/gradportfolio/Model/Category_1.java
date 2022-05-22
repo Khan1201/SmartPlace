@@ -2,20 +2,13 @@ package com.example.gradportfolio.Model;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gradportfolio.Presenter.CategoryRecyclerAdapter;
-import com.example.gradportfolio.Presenter.SearchRecyclerAdapter;
-import com.example.gradportfolio.Presenter.SearchRecyclerAdapter2;
 import com.example.gradportfolio.R;
 import com.example.gradportfolio.View.MainActivity;
 
@@ -38,7 +31,7 @@ public class Category_1 extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.category_recyclerview);
         ArrayList<CategoryData> productItemArrayList = new ArrayList<>();
-       CategoryRecyclerAdapter categoryRecyclerAdapter;
+        CategoryRecyclerAdapter categoryRecyclerAdapter;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
