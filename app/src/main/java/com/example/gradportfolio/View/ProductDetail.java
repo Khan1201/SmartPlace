@@ -25,7 +25,7 @@ public class ProductDetail extends AppCompatActivity {
 
     private  Intent intent;
     private int number;
-    private String title, product_name, product_price, image, details, image2, image3, image4;
+    private String title, product_name, product_price, image, details, image2, image3, image4, name;
     private String sql;
     private Cursor c;
 
@@ -50,6 +50,7 @@ public class ProductDetail extends AppCompatActivity {
         image2 = intent.getStringExtra("image2");
         image3 = intent.getStringExtra("image3");
         image4 = intent.getStringExtra("image4");
+        name = intent.getStringExtra("name");
 
         imageView1 = findViewById(R.id.item_detail_image1);
         imageView2 = findViewById(R.id.item_detail_image2);
@@ -64,15 +65,26 @@ public class ProductDetail extends AppCompatActivity {
         textView5 = findViewById(R.id.details);
 
 
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-                textView1.setText(title); // 클릭 시 가져오는 타이틀
-                textView2.setText(product_name); // 클릭 시 가져오는 제품 이름
-                textView3.setText(product_price);
-                textView4.setText(Currency.getInstance(Locale.KOREA).getSymbol());
-                textView5.setText(details);
-                Glide.with(MenuSearch.ct).load(image2).into(imageView2);
-                Glide.with(MenuSearch.ct).load(image3).into(imageView3);
-
+        if(name.equals("basket")) {
+            Glide.with(ShoppingBasket.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
+            textView1.setText(title); // 클릭 시 가져오는 타이틀
+            textView2.setText(product_name); // 클릭 시 가져오는 제품 이름
+            textView3.setText(product_price);
+            textView4.setText(Currency.getInstance(Locale.KOREA).getSymbol());
+            textView5.setText(details);
+            Glide.with(ShoppingBasket.ct).load(image2).into(imageView2);
+            Glide.with(ShoppingBasket.ct).load(image3).into(imageView3);
+        }
+        else{
+            Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
+            textView1.setText(title); // 클릭 시 가져오는 타이틀
+            textView2.setText(product_name); // 클릭 시 가져오는 제품 이름
+            textView3.setText(product_price);
+            textView4.setText(Currency.getInstance(Locale.KOREA).getSymbol());
+            textView5.setText(details);
+            Glide.with(MenuSearch.ct).load(image2).into(imageView2);
+            Glide.with(MenuSearch.ct).load(image3).into(imageView3);
+        }
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override

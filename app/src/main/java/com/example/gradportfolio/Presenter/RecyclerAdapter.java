@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.BasketData;
 
+import com.example.gradportfolio.Model.SearchData;
 import com.example.gradportfolio.R;
 import com.example.gradportfolio.View.MainActivity;
 import com.example.gradportfolio.View.ProductDetail;
@@ -34,6 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 {
     // adapter에 들어갈 list 입니다.
     public static ArrayList<BasketData> listData = new ArrayList<BasketData>();
+    public static ArrayList<SearchData> searchData = new ArrayList<SearchData>();
     private Intent intent;
     private String sql;
 
@@ -55,12 +57,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                for(int i=0; i < MainActivity.productList.size(); i++){
+                    searchData.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
+                            MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
+                            MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4()));
+                }
                 intent = new Intent(v.getContext(), ProductDetail.class);
                 intent.putExtra("number" ,position);
-                intent.putExtra("title", listData.get(position).getBrandTitle());
-                intent.putExtra("image", listData.get(position).getImageUrl());
-                intent.putExtra("product_name", listData.get(position).getProductName());
-                intent.putExtra("price",listData.get(position).getProductPrice());
+                intent.putExtra("title", searchData.get(position).getBrand_title());
+                intent.putExtra("image", searchData.get(position).getImageUrl());
+                intent.putExtra("product_name", searchData.get(position).getProductName());
+                intent.putExtra("price", searchData.get(position).getProduct_price());
+                intent.putExtra("details", searchData.get(position).getDetails());
+                intent.putExtra("image2", searchData.get(position).getImageUrl2());
+                intent.putExtra("image3", searchData.get(position).getImageUrl3());
+                intent.putExtra("image4", searchData.get(position).getImageUrl4());
+                intent.putExtra("name","basket");
                 v.getContext().startActivity(intent);
 
             }

@@ -12,7 +12,11 @@ public class BasketData {
     private String product_price;
     private ArrayAdapter<Integer> spinner_adapter;
     private String image_url;
-    private Integer spinner_count;
+    private String details;
+    private String image_url2;
+    private String image_url3;
+    private String image_url4;
+
 
     public String getBrandTitle() {
         return brand_title;
@@ -52,6 +56,38 @@ public class BasketData {
 
     public void setSpinnerAdapter(ArrayAdapter<Integer> spinner_adapter) {
         this.spinner_adapter = spinner_adapter;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
+    public String getImageUrl2() {
+        return image_url2;
+    }
+
+    public void setImageUrl2(String image_url2) {
+        this.image_url2 = image_url2;
+    }
+
+    public String getImageUrl3() {
+        return image_url3;
+    }
+
+    public void setImageUrl3(String image_url3) {
+        this.image_url3 = image_url3;
+    }
+
+    public String getImageUrl4() {
+        return image_url4;
+    }
+
+    public void setImageUrl4(String image_url4) {
+        this.image_url4 = image_url4;
     }
 
 }
