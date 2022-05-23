@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gradportfolio.Model.HotdealData2;
 import com.example.gradportfolio.R;
-import com.example.gradportfolio.View.HotdealProductList;
+import com.example.gradportfolio.View.Home;
 
 import java.util.ArrayList;
 
 public class HotDealRecyclerAdapter2 extends RecyclerView.Adapter<HotDealRecyclerAdapter2.ViewHolder> {
     ArrayList<HotdealData2> hotdealData2ArrayList;
-    HotdealProductList activity;
+    Home activity;
 
-    public HotDealRecyclerAdapter2(ArrayList<HotdealData2> hotdealData2ArrayList, HotdealProductList activity) {
+    public HotDealRecyclerAdapter2(ArrayList<HotdealData2> hotdealData2ArrayList, Home activity) {
         this.hotdealData2ArrayList = hotdealData2ArrayList;
         this.activity = activity;
     }
