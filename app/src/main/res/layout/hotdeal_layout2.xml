@@ -4,11 +4,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp">
+    android:layout_marginEnd="15dp"
+    android:background="@drawable/recommend_border">
+
 
     <ImageView
         android:id="@+id/hotdeal2_image"
-        android:layout_width="150dp"
+        android:layout_width="128dp"
         android:layout_height="80dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
