@@ -1,8 +1,16 @@
 package com.example.gradportfolio.View;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -134,55 +142,55 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
 //        super.onBackPressed();
-//
-//        final Dialog dialog = new Dialog(MainActivity.this);
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        dialog.setContentView(R.layout.custom_dialog);
-//
-//        WebView webView = (WebView)dialog.findViewById(R.id.webView2);
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.setWebViewClient(new WebViewClient() {
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                startActivity(intent);
-//                return true;
-//            }
-//        });
-//
-//        String html = "<div style=\"height: 50px\">\n" +
-//                "\t\t\t\t<script src=\"https://ads-partners.coupang.com/g.js\"></script>\n" +
-//                "\t\t\t\t<script>\n" +
-//                "\t\t\t\t\tnew PartnersCoupang.G({\n" +
-//                "\t\t\t\t\t\t\"id\": 1,\n" +
-//                "\t\t\t\t\t\t\"height\": 240,\n" +
-//                "\t\t\t\t\t\t\"width\": 270,\n" +
-//                "\t\t\t\t\t\t\"bordered\": true\n" +
-//                "\t\t\t\t\t});\n" +
-//                "\t\t\t\t</script>\t\t\n" +
-//                "\t\t</div>";
-//        webView.loadData(html, "text/html", "UTF8");
-//
-//
-//        dialog.show();
-//        Button button = (Button)dialog.findViewById(R.id.backbtn);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dialog.dismiss();
-//            }
-//        });
-//        Button button1 = (Button)dialog.findViewById(R.id.exitbtn);
-//        button1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//
-//            }
-//        });
-//    }
+
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_dialog);
+
+        WebView webView = (WebView)dialog.findViewById(R.id.webView2);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        String html = "<div style=\"height: 50px\">\n" +
+                "\t\t\t\t<script src=\"https://ads-partners.coupang.com/g.js\"></script>\n" +
+                "\t\t\t\t<script>\n" +
+                "\t\t\t\t\tnew PartnersCoupang.G({\n" +
+                "\t\t\t\t\t\t\"id\": 1,\n" +
+                "\t\t\t\t\t\t\"height\": 240,\n" +
+                "\t\t\t\t\t\t\"width\": 270,\n" +
+                "\t\t\t\t\t\t\"bordered\": true\n" +
+                "\t\t\t\t\t});\n" +
+                "\t\t\t\t</script>\t\t\n" +
+                "\t\t</div>";
+        webView.loadData(html, "text/html", "UTF8");
+
+
+        dialog.show();
+        Button button = (Button)dialog.findViewById(R.id.backbtn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Button button1 = (Button)dialog.findViewById(R.id.exitbtn);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+    }
 }
