@@ -5,13 +5,22 @@ public class SearchData {
     private String brand_title;
     private String product_price;
     private String imageUrl;
+    private String details;
+    private String imageUrl2;
+    private String imageUrl3;
+    private String imageUrl4;
 
-    public SearchData(String productName, String brand_title, String product_price, String imageUrl)
+    public SearchData(String productName, String brand_title, String product_price, String imageUrl,
+                      String details, String imageUrl2, String imageUrl3, String imageUrl4)
     {
         this.productName = productName;
         this.brand_title = brand_title;
         this.product_price = product_price;
         this.imageUrl = imageUrl;
+        this.details = details;
+        this.imageUrl2 = imageUrl2;
+        this.imageUrl3 = imageUrl3;
+        this.imageUrl4 = imageUrl4;
 
     }
 
@@ -26,6 +35,18 @@ public class SearchData {
     }
     public String getImageUrl(){
         return imageUrl;
+    }
+    public String getDetails(){
+        return details;
+    }
+    public String getImageUrl2(){
+        return imageUrl2;
+    }
+    public String getImageUrl3(){
+        return imageUrl3;
+    }
+    public String getImageUrl4(){
+        return imageUrl4;
     }
 
 
@@ -44,6 +65,23 @@ public class SearchData {
     public void setImageUrl(String imageUrl){
         this.imageUrl = imageUrl;
     }
+
+    public void setDetails(String details){
+        this.details = details;
+    }
+
+    public void setImageUrl2(String imageUrl2){
+        this.imageUrl2 = imageUrl2;
+    }
+
+    public void setImageUrl3(String imageUrl3){
+        this.imageUrl3 = imageUrl3;
+    }
+
+    public void setImageUrl4(String imageUrl4){
+        this.imageUrl4 = imageUrl4;
+    }
+
 
 
 

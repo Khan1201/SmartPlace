@@ -106,6 +106,10 @@ public class MainActivity extends AppCompatActivity {
                         product.setBrand_name(output.getString("brand_name"));
                         product.setProduct_name(output.getString("product_name"));
                         product.setPrice(output.getString("price"));
+                        product.setDetails(output.getString("details"));
+                        product.setUrl2(output.getString("url2"));
+                        product.setUrl3(output.getString("url3"));
+                        product.setUrl4(output.getString("url4"));
                         productList.add(product);
                     }
 

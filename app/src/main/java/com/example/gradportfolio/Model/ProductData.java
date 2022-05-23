@@ -6,6 +6,10 @@ public class ProductData {
     private String brand_name;
     private String product_name;
     private String price;
+    private String details;
+    private String url2;
+    private String url3;
+    private String url4;
 
     public String getId(){
         return id;
@@ -40,6 +44,34 @@ public class ProductData {
     }
     public void setPrice(String price){
         this.price = price;
+    }
+
+    public String getDetails(){
+        return details;
+    }
+    public void setDetails(String details){
+        this.details = details;
+    }
+
+    public String getUrl2(){
+        return url2;
+    }
+    public void setUrl2(String url2){
+        this.url2 = url2;
+    }
+
+    public String getUrl3(){
+        return url3;
+    }
+    public void setUrl3(String url3){
+        this.url3 = url3;
+    }
+
+    public String getUrl4(){
+        return url4;
+    }
+    public void setUrl4(String url4){
+        this.url4 = url4;
     }
 
 }

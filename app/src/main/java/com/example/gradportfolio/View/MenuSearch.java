@@ -98,13 +98,15 @@ public class MenuSearch extends Fragment {
         recyclerView.setAdapter(searchRecyclerAdapter);
 
         try {
-            productItemArrayList.add(new SearchData(MainActivity.productList.get(0).getProduct_name(), MainActivity.productList.get(0).getBrand_name(), MainActivity.productList.get(0).getPrice(), MainActivity.productList.get(0).getUrl()));
-            productItemArrayList.add(new SearchData(MainActivity.productList.get(1).getProduct_name(), MainActivity.productList.get(1).getBrand_name(), MainActivity.productList.get(1).getPrice(), MainActivity.productList.get(1).getUrl()));
-            productItemArrayList.add(new SearchData(MainActivity.productList.get(2).getProduct_name(), MainActivity.productList.get(2).getBrand_name(), MainActivity.productList.get(2).getPrice(), MainActivity.productList.get(2).getUrl()));
-            productItemArrayList.add(new SearchData(MainActivity.productList.get(3).getProduct_name(), MainActivity.productList.get(3).getBrand_name(), MainActivity.productList.get(3).getPrice(), MainActivity.productList.get(3).getUrl()));
+            for(int i=0; i < MainActivity.productList.size(); i++){
+                productItemArrayList.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
+                        MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
+                        MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4()));
+            }
+
         }
         catch(Exception e){
-            productItemArrayList.add(new SearchData("", "데이터 수신 실패", "", ""));
+            productItemArrayList.add(new SearchData("", "데이터 수신 실패", "", "", "", "", "", ""));
             Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
         }
         swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_layout_menu_search);
@@ -112,10 +114,11 @@ public class MenuSearch extends Fragment {
             @Override
             public void onRefresh() {
                 try {
-                    productItemArrayList.add(new SearchData(MainActivity.productList.get(0).getProduct_name(), MainActivity.productList.get(0).getBrand_name(), MainActivity.productList.get(0).getPrice(), MainActivity.productList.get(0).getUrl()));
-                    productItemArrayList.add(new SearchData(MainActivity.productList.get(1).getProduct_name(), MainActivity.productList.get(1).getBrand_name(), MainActivity.productList.get(1).getPrice(), MainActivity.productList.get(1).getUrl()));
-                    productItemArrayList.add(new SearchData(MainActivity.productList.get(2).getProduct_name(), MainActivity.productList.get(2).getBrand_name(), MainActivity.productList.get(2).getPrice(), MainActivity.productList.get(2).getUrl()));
-                    productItemArrayList.add(new SearchData(MainActivity.productList.get(3).getProduct_name(), MainActivity.productList.get(3).getBrand_name(), MainActivity.productList.get(3).getPrice(), MainActivity.productList.get(3).getUrl()));
+                    for(int i=0; i < MainActivity.productList.size(); i++){
+                        productItemArrayList.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
+                                MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
+                                MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4()));
+                    }
                     swipeRefreshLayout.setRefreshing(false);
                 } catch (Exception e) {
                     Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();

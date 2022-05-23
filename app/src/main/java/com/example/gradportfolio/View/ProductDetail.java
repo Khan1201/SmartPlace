@@ -18,18 +18,20 @@ import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Presenter.RecyclerAdapter;
 import com.example.gradportfolio.R;
 
+import java.util.Currency;
+import java.util.Locale;
+
 public class ProductDetail extends AppCompatActivity {
 
     private  Intent intent;
     private int number;
-    private String title, product_name, product_price, image;
-
+    private String title, product_name, product_price, image, details, image2, image3, image4;
     private String sql;
     private Cursor c;
 
     private Button buttonAdd;
     private ImageView imageView1, imageView2, imageView3;
-    private TextView textView1, textView2, textView3, textView4;
+    private TextView textView1, textView2, textView3, textView4,textView5;
 
     private Context ct;
 
@@ -42,9 +44,12 @@ public class ProductDetail extends AppCompatActivity {
         number = intent.getIntExtra("number", -1);
         title = intent.getStringExtra("title");
         image = intent.getStringExtra("image");
-
         product_name = intent.getStringExtra("product_name");
         product_price = intent.getStringExtra("price");
+        details = intent.getStringExtra("details");
+        image2 = intent.getStringExtra("image2");
+        image3 = intent.getStringExtra("image3");
+        image4 = intent.getStringExtra("image4");
 
         imageView1 = findViewById(R.id.item_detail_image1);
         imageView2 = findViewById(R.id.item_detail_image2);
@@ -56,128 +61,18 @@ public class ProductDetail extends AppCompatActivity {
         textView2 = findViewById(R.id.item_detail_text2);
         textView3 = findViewById(R.id.item_detail_text3);
         textView4 = findViewById(R.id.item_detail_text4);
+        textView5 = findViewById(R.id.details);
 
-
-        switch (number)
-        {
-            case 0: //1인 원룸 휴대용 욕조
 
                 Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-
-
                 textView1.setText(title); // 클릭 시 가져오는 타이틀
-
                 textView2.setText(product_name); // 클릭 시 가져오는 제품 이름
-
                 textView3.setText(product_price);
+                textView4.setText(Currency.getInstance(Locale.KOREA).getSymbol());
+                textView5.setText(details);
+                Glide.with(MenuSearch.ct).load(image2).into(imageView2);
+                Glide.with(MenuSearch.ct).load(image3).into(imageView3);
 
-                textView4.append("제작사 : DCU\n");
-                textView4.append("판매처 : Smart Place");
-
-                imageView2.setImageResource(R.drawable.bath2);
-
-                imageView3.setImageResource(R.drawable.bath3);
-                break;
-
-            case 1: // 일반 헤드형 수납 침대
-
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-
-                textView1.setText(title);
-                textView2.setText(product_name);
-
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-
-
-                textView1.setText(title); // 클릭 시 가져오는 타이틀
-
-                textView2.setText(product_name); // 클릭 시 가져오는 제품 이름
-
-                textView3.setText(product_price);
-
-                textView4.append("제작사 : DCU\n");
-                textView4.append("판매처 : Smart Place");
-
-                imageView2.setImageResource(R.drawable.bath2);
-
-                imageView3.setImageResource(R.drawable.bath3);
-                break;
-
-            case 2://심플 검은말 장식품  2P
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-                textView1.setText(title);
-                textView2.setText(product_name);
-                textView1.append("\n");
-                textView3.setText(product_price);
-
-                textView4.append("제작사 : DCU\n");
-                textView4.append("판매처 : Smart Place");
-
-                imageView2.setImageResource(R.drawable.bath2);
-
-                imageView3.setImageResource(R.drawable.bath3);
-
-                break;
-
-            case 3://고급 1인용 사무실 의자
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-                textView1.setText(title);
-                textView2.setText(product_name);
-                textView3.setText(product_price);
-
-                textView4.append("제작사 : DCU\n");
-                textView4.append("판매처 : Smart Place");
-                imageView2.setImageResource(R.drawable.ic_launcher_background);
-
-                imageView3.setImageResource(R.drawable.ic_launcher_background);
-
-                break;
-
-            case 4://가정용 4구 레인지
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-                textView1.setText(title);
-                textView2.setText(product_name);
-                textView1.append("\n");
-                textView3.setText(product_price);
-
-                textView4.append("제작사 : DCU\n");
-                textView4.append("판매처 : Smart Place");
-                imageView2.setImageResource(R.drawable.ic_launcher_background);
-
-                imageView3.setImageResource(R.drawable.ic_launcher_background);
-                break;
-
-            case 5://사무용 6인 책상 블루
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-                textView1.setText(title);
-                textView2.setText(product_name);
-                textView1.append("\n");
-                textView3.setText(product_price);
-
-                textView4.append("제작사 : DCU IT\n");
-                textView4.append("판매처 : Smart Place");
-                imageView2.setImageResource(R.drawable.ic_launcher_background);
-
-                imageView3.setImageResource(R.drawable.ic_launcher_background);
-
-                break;
-
-            case 6://3단 가정용 서랍
-                Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
-                textView1.setText(title);
-                textView2.setText(product_name);
-                textView1.append("\n");
-                textView3.setText(product_price);
-
-                textView4.append("제작사 : DCU IT2\n");
-                textView4.append("판매처 : Smart Place");
-                imageView2.setImageResource(R.drawable.ic_launcher_background);
-
-                imageView3.setImageResource(R.drawable.ic_launcher_background);
-                break;
-
-
-        }
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -55,6 +55,10 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
                 intent.putExtra("image",productItemArrayList.get(position).getImageUrl());
                 intent.putExtra("product_name", productItemArrayList.get(position).getProductName());
                 intent.putExtra("price",productItemArrayList.get(position).getProduct_price());
+                intent.putExtra("details",productItemArrayList.get(position).getDetails());
+                intent.putExtra("image2",productItemArrayList.get(position).getImageUrl2());
+                intent.putExtra("image3",productItemArrayList.get(position).getImageUrl3());
+                intent.putExtra("image4",productItemArrayList.get(position).getImageUrl4());
                 v.getContext().startActivity(intent);
             }
         });
