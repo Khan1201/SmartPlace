@@ -28,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".View.MainActivity" />
         <activity android:name=".View.ProductDetail"/>
         <activity android:name=".Model.Category_1" />

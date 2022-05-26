@@ -10,6 +10,7 @@ public class ProductData {
     private String url2;
     private String url3;
     private String url4;
+    private String purchase_url;
 
     public String getId(){
         return id;
@@ -72,6 +73,13 @@ public class ProductData {
     }
     public void setUrl4(String url4){
         this.url4 = url4;
+    }
+
+    public String getPurchaseUrl(){
+        return purchase_url;
+    }
+    public void setPurchaseUrl(String purchase_url){
+        this.purchase_url = purchase_url;
     }
 
 }

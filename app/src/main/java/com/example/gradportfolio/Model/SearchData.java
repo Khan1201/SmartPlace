@@ -9,9 +9,10 @@ public class SearchData {
     private String imageUrl2;
     private String imageUrl3;
     private String imageUrl4;
+    private String purchase_url;
 
     public SearchData(String productName, String brand_title, String product_price, String imageUrl,
-                      String details, String imageUrl2, String imageUrl3, String imageUrl4)
+                      String details, String imageUrl2, String imageUrl3, String imageUrl4, String purchase_url)
     {
         this.productName = productName;
         this.brand_title = brand_title;
@@ -21,7 +22,7 @@ public class SearchData {
         this.imageUrl2 = imageUrl2;
         this.imageUrl3 = imageUrl3;
         this.imageUrl4 = imageUrl4;
-
+        this.purchase_url = purchase_url;
     }
 
     public String getProductName(){
@@ -48,6 +49,11 @@ public class SearchData {
     public String getImageUrl4(){
         return imageUrl4;
     }
+    public String getPurchaseUrl() {
+        return purchase_url;
+    }
+
+
 
 
     public void setProductName(String productName){
@@ -82,7 +88,9 @@ public class SearchData {
         this.imageUrl4 = imageUrl4;
     }
 
-
+    public void setPurchaseUrl(String purchase_url) {
+        this.purchase_url = purchase_url;
+    }
 
 
 

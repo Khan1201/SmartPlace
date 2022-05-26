@@ -16,7 +16,7 @@ public class BasketData {
     private String image_url2;
     private String image_url3;
     private String image_url4;
-
+    private String purchase_url;
 
     public String getBrandTitle() {
         return brand_title;
@@ -88,6 +88,14 @@ public class BasketData {
 
     public void setImageUrl4(String image_url4) {
         this.image_url4 = image_url4;
+    }
+
+    public String getPurchaseUrl() {
+        return purchase_url;
+    }
+
+    public void setPurchaseUrl(String purchase_url) {
+        this.purchase_url = purchase_url;
     }
 
 }

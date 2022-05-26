@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -57,24 +59,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for(int i=0; i < MainActivity.productList.size(); i++){
-                    searchData.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
-                            MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
-                            MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4()));
+                if(MainActivity.productList.isEmpty()){
+                    Toast.makeText(v.getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
                 }
-                intent = new Intent(v.getContext(), ProductDetail.class);
-                intent.putExtra("number" ,position);
-                intent.putExtra("title", searchData.get(position).getBrand_title());
-                intent.putExtra("image", searchData.get(position).getImageUrl());
-                intent.putExtra("product_name", searchData.get(position).getProductName());
-                intent.putExtra("price", searchData.get(position).getProduct_price());
-                intent.putExtra("details", searchData.get(position).getDetails());
-                intent.putExtra("image2", searchData.get(position).getImageUrl2());
-                intent.putExtra("image3", searchData.get(position).getImageUrl3());
-                intent.putExtra("image4", searchData.get(position).getImageUrl4());
-                intent.putExtra("name","basket");
-                v.getContext().startActivity(intent);
-
+                else {
+                    for (int i = 0; i < MainActivity.productList.size(); i++) {
+                        searchData.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
+                                MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
+                                MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4(), MainActivity.productList.get(i).getPurchaseUrl()));
+                    }
+                    intent = new Intent(v.getContext(), ProductDetail.class);
+                    intent.putExtra("number", position);
+                    intent.putExtra("title", searchData.get(position).getBrand_title());
+                    intent.putExtra("image", searchData.get(position).getImageUrl());
+                    intent.putExtra("product_name", searchData.get(position).getProductName());
+                    intent.putExtra("price", searchData.get(position).getProduct_price());
+                    intent.putExtra("details", searchData.get(position).getDetails());
+                    intent.putExtra("image2", searchData.get(position).getImageUrl2());
+                    intent.putExtra("image3", searchData.get(position).getImageUrl3());
+                    intent.putExtra("image4", searchData.get(position).getImageUrl4());
+                    intent.putExtra("purchase", searchData.get(position).getPurchaseUrl());
+                    intent.putExtra("name", "basket");
+                    v.getContext().startActivity(intent);
+                }
             }
         });
         holder.onBind(listData.get(position));
@@ -92,6 +99,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             }
 
         });
+        holder.purchaseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent urlintent = new Intent(Intent.ACTION_VIEW, Uri.parse(listData.get(position).getPurchaseUrl()));
+                    view.getContext().startActivity(urlintent);
+                }
+                catch (Exception e){
+                    Toast.makeText(view.getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+        });
+
+
+
+
         // 생성된 ItemViewHolder에 데이터를 바인딩
         // 예를 들어 데이터가 스크롤 되어서 맨 위에있던 뷰 홀더(레이아웃) 객체가 맨 아래로 이동한다면,
         // 그 레이아웃은 재사용 하되 데이터는 새롭게 바뀔 것이다. 고맙게도 아래에서 새롭게 보여질 데이터의 인덱스 값이 position이라는 이름으로 사용가능하다.
@@ -125,6 +150,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
         public  Spinner spinner;
         private ImageView imageView;
         private Button deleteButton;
+        private Button purchaseButton;
         private Integer price;
 
 
@@ -143,6 +169,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
             spinner = itemView.findViewById(R.id.recycle_spinner);
             imageView = itemView.findViewById(R.id.recycle_product_image);
             deleteButton = itemView.findViewById(R.id.recycle_delete);
+            purchaseButton = itemView.findViewById(R.id.recycle_purchase);
         }
 
         void onBind(BasketData data) {

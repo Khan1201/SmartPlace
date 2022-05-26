@@ -88,13 +88,13 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:id="@+id/recycle_order"
+        android:id="@+id/recycle_purchase"
         android:layout_width="70dp"
         android:layout_height="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/basket_button_border"
-        android:text="주문하기"
+        android:text="구매하기"
         android:textSize="10dp"
         android:textColor="@color/black"
         android:textStyle="bold"

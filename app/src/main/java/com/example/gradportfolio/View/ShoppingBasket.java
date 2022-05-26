@@ -89,7 +89,7 @@ public class ShoppingBasket extends Fragment {
     private void getData() {
         adapter.clearItem();
         ArrayList<ProductData> basketProductList = new ArrayList<>();
-        sql = "select distinct url, brand_name, product_name, price from ShoppingBasket";
+        sql = "select distinct url, brand_name, product_name, price, purchase from ShoppingBasket";
         c = MainActivity.db.rawQuery(sql, null);
 
         while(c.moveToNext()){
@@ -98,6 +98,7 @@ public class ShoppingBasket extends Fragment {
             productData.setProduct_name(c.getString(c.getColumnIndex("product_name")));
             productData.setPrice(c.getString(c.getColumnIndex("price")));
             productData.setUrl(c.getString(c.getColumnIndex("url")));
+            productData.setPurchaseUrl(c.getString(c.getColumnIndex("purchase")));
             basketProductList.add(productData);
         }
 
@@ -109,6 +110,7 @@ public class ShoppingBasket extends Fragment {
                 data.setProductName(basketProductList.get(i).getProduct_name());
                 data.setProductPrice(basketProductList.get(i).getPrice());
                 data.setImageUrl(basketProductList.get(i).getUrl());
+                data.setPurchaseUrl(basketProductList.get(i).getPurchaseUrl());
                 // 각 값이 들어간 data를 adapter에 추가합니다.
                 adapter.addItem(data);
             }

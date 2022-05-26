@@ -44,7 +44,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:layout_marginLeft="105dp"
+                            android:layout_marginLeft="55dp"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="15dp"
                             android:id="@+id/button_layout">
@@ -66,6 +66,14 @@
                                     android:text="장바구니 추가"
                                     android:textStyle="bold"
                                     app:layout_constraintLeft_toRightOf="@id/preview_button"
+                                    android:layout_marginLeft="15dp"/>
+                                <Button
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/purchase_button"
+                                    android:text="구매하기"
+                                    android:textStyle="bold"
+                                    app:layout_constraintLeft_toRightOf="@id/basket_add_button"
                                     android:layout_marginLeft="15dp"/>
 
                         </LinearLayout>
@@ -227,6 +235,29 @@
                             android:src="@drawable/ic_launcher_background"
                             app:layout_constraintTop_toBottomOf="@id/product_detail_line3"
                                 />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2.3dp"
+                            android:layout_marginTop="30px"
+                            android:layout_marginLeft="70px"
+                            android:layout_marginRight="70px"
+                            android:id="@+id/product_detail_line5"
+
+                            android:background="@color/white"
+                            app:layout_constraintTop_toBottomOf="@id/item_detail_image1"
+                            />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/item_detail_image4"
+                            android:layout_marginTop="30px"
+                            android:layout_marginLeft="70px"
+                            android:layout_marginRight="70px"
+                            android:src="@drawable/ic_launcher_background"
+                            app:layout_constraintTop_toBottomOf="@id/product_detail_line3"
+                            />
 
 
 

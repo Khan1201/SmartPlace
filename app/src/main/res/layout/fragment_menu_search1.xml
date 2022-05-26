@@ -29,7 +29,7 @@
             android:textSize="25sp"
             android:textColor="@color/black"
             android:paddingTop="100px"
-            android:paddingLeft="70px"
+            android:paddingLeft="30dp"
              />
 
         <EditText
@@ -77,8 +77,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2.3dp"
-            android:layout_marginLeft="70px"
-            android:layout_marginRight="70px"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="20px"
             android:id="@+id/search_line1"
             app:layout_constraintTop_toBottomOf="@id/linear"
@@ -93,9 +92,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="#f5f5f5"
-            android:padding="10dp"
+            android:layout_height="0px"
+            android:background="#00000000"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -110,27 +110,11 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_line1"
             android:text="제품 찾아보기"
-            android:textStyle="normal"
-            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textSize="22dp"
             android:textColor="@color/black"
-            android:layout_marginTop="100px"
-            android:paddingLeft="70px"/>
-
-        <Button
-            android:id="@+id/entire"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="67px"
-            android:layout_marginRight="50px"
-            android:background="#00ff0000"
-            android:text="모두보기"
-            android:textStyle="normal"
-            android:textColor="#5F5F5F"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_line1" />
-
-
-
+            android:layout_marginTop="15dp"
+            android:paddingLeft="30dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

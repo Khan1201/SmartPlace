@@ -10,6 +10,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -97,16 +98,20 @@ public class MenuSearch extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(searchRecyclerAdapter);
 
-        try {
-            for(int i=0; i < MainActivity.productList.size(); i++){
-                productItemArrayList.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
-                        MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
-                        MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4()));
-            }
+        if(MainActivity.productList.size() != 0){
+            try {
+                for(int i=0; i < MainActivity.productList.size(); i++){
+                    productItemArrayList.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
+                            MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
+                            MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4(), MainActivity.productList.get(i).getPurchaseUrl()));
+                }
 
+            }
+            catch(Exception e){
+                Log.v("error", "로딩 오류");
+            }
         }
-        catch(Exception e){
-            productItemArrayList.add(new SearchData("", "데이터 수신 실패", "", "", "", "", "", ""));
+        else{
             Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
         }
         swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_layout_menu_search);
@@ -114,10 +119,13 @@ public class MenuSearch extends Fragment {
             @Override
             public void onRefresh() {
                 try {
+                    if(MainActivity.productList.isEmpty()){
+                        MainActivity.makeRequest();
+                    }
                     for(int i=0; i < MainActivity.productList.size(); i++){
                         productItemArrayList.add(new SearchData(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
                                 MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
-                                MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4()));
+                                MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4(),MainActivity.productList.get(i).getPurchaseUrl()));
                     }
                     swipeRefreshLayout.setRefreshing(false);
                 } catch (Exception e) {

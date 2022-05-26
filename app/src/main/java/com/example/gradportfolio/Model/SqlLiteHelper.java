@@ -16,6 +16,7 @@ public class SqlLiteHelper extends SQLiteOpenHelper {
                 + ",url blob"
                 + ",brand_name text"
                 + ",product_name text"
+                + ",purchase"
                 + ",price text);";
 
         db.execSQL(sql);

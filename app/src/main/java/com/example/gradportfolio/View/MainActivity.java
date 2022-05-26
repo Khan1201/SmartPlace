@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    void makeRequest() {
+    public static void makeRequest() {
         String url = "http://203.228.1.110:3001/data";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                         product.setUrl2(output.getString("url2"));
                         product.setUrl3(output.getString("url3"));
                         product.setUrl4(output.getString("url4"));
+                        product.setPurchaseUrl(output.getString("purchase"));
                         productList.add(product);
                     }
 
@@ -149,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(MainActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
-
         WebView webView = (WebView)dialog.findViewById(R.id.webView2);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
@@ -188,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                productList.clear();
                 finish();
 
             }

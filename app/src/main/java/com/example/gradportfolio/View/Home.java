@@ -3,19 +3,23 @@ package com.example.gradportfolio.View;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.gradportfolio.Model.HotdealData1;
 import com.example.gradportfolio.Model.HotdealData2;
+import com.example.gradportfolio.Model.SearchData;
 import com.example.gradportfolio.Presenter.HotDealRecyclerAdapter;
 import com.example.gradportfolio.Presenter.HotDealRecyclerAdapter2;
 import com.example.gradportfolio.R;
@@ -37,7 +41,7 @@ public class Home extends Fragment {
 //    LinearLayout imageView;
    public static Context context;
 //    ImageView mainImage1, mainImage2, hdImage1, hdImage2;
-//    private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,77 +49,38 @@ public class Home extends Fragment {
         context = container.getContext();
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home,container,false);
 
-        hotdeal_inti(rootView); //hotdeal_layout1
+        if(MainActivity.productList.size() != 0){
+            try{
+                hotdeal_init(rootView); //hotdeal_layout1
+                recommend_init(rootView);//hotdeal_layout2
+            }
+            catch(Exception e){
+                Log.v("error", "로딩 오류");
+            }
+        }
+        else{
+            Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
+        }
 
-        recommend_inti(rootView);//hotdeal_layout2
+        swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_layout_home);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    if(MainActivity.productList.isEmpty()){
+                        MainActivity.makeRequest();
+                    }
+                    hotdeal_init(rootView);
+                    recommend_init(rootView);
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+                catch(Exception e){
+                    Toast.makeText(context, "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            }
+        });
 
-//        swipeRefreshLayout=(SwipeRefreshLayout)rootView.findViewById(R.id.swipe_layout_home);
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                try {
-//                    Glide.with(context).load(MainActivity.productList.get(0).getUrl()).into(mainImage1);
-//                    Glide.with(context).load(MainActivity.productList.get(1).getUrl()).into(mainImage2);
-//                    Glide.with(context).load(MainActivity.productList.get(2).getUrl()).into(hdImage1);
-//                    Glide.with(context).load(MainActivity.productList.get(3).getUrl()).into(hdImage2);
-//                    swipeRefreshLayout.setRefreshing(false);
-//                }
-//                catch(Exception e){
-//                    Toast.makeText(context, "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
-//                    swipeRefreshLayout.setRefreshing(false);
-//                }
-//            }
-//        });
-//
-//        mainImage1 = (ImageView)rootView.findViewById(R.id.recommend_image1);
-//        mainImage2 = (ImageView)rootView.findViewById(R.id.recommend_image2);
-//        hdImage1 = (ImageView)rootView.findViewById(R.id.hotdeal_image1);
-//        hdImage2 = (ImageView)rootView.findViewById(R.id.hotdeal_image2);
-//
-//        if(MainActivity.productList.size() != 0){
-//            try{
-//                Glide.with(this).load(MainActivity.productList.get(0).getUrl()).into(mainImage1);
-//                Glide.with(this).load(MainActivity.productList.get(1).getUrl()).into(mainImage2);
-//                Glide.with(this).load(MainActivity.productList.get(2).getUrl()).into(hdImage1);
-//                Glide.with(this).load(MainActivity.productList.get(3).getUrl()).into(hdImage2);
-//            }
-//            catch(Exception e){
-//                Log.v("error", "로딩 오류");
-//            }
-//        }
-//        else{
-//            mainImage1.setImageResource(R.drawable.image_loading);
-//            mainImage2.setImageResource(R.drawable.image_loading);
-//            hdImage1.setImageResource(R.drawable.image_loading);
-//            hdImage2.setImageResource(R.drawable.image_loading);
-//            Toast.makeText(getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
-//        }
-//
-//
-//        imageView = (LinearLayout)rootView.findViewById(R.id.recommend_product_list);
-//        imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//                try {
-//                    builder.setTitle("데이터").setMessage
-//                            ("ID : " + MainActivity.productList.get(1).getId() + "\n"
-//                                    + "URL : " + MainActivity.productList.get(1).getUrl() + "\n"
-//                                    + "브랜드명 : " + MainActivity.productList.get(1).getBrand_name() + "\n"
-//                                    + "상품명 : " + MainActivity.productList.get(1).getProduct_name() + "\n"
-//                                    + "가격 : " + MainActivity.productList.get(1).getPrice() + "\n");
-//                    AlertDialog alertDialog = builder.create();
-//                    alertDialog.show();
-//                }
-//                catch(Exception e){
-//                    builder.setTitle("연결 실패").setMessage
-//                            ("네트워크 연결을 확인해주세요.");
-//                    AlertDialog alertDialog = builder.create();
-//                    alertDialog.show();
-//                }
-//            }
-//        });
-//
         WebView webView = rootView.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
@@ -143,22 +108,23 @@ public class Home extends Fragment {
         return rootView;
     }
 
-        private void hotdeal_inti(ViewGroup rootView)
+        private void hotdeal_init(ViewGroup rootView)
     {
         hotdeal_recyclerView = rootView.findViewById(R.id.hotdeal1_recycler);
-        hotdealData1ArrayList = new ArrayList<>();
+        hotdealData1ArrayList = new ArrayList();
         hotDealRecyclerAdapter = new HotDealRecyclerAdapter(hotdealData1ArrayList, this);
         hotdeal_linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false); //가로
         hotdeal_recyclerView.setLayoutManager(hotdeal_linearLayoutManager);
         hotdeal_recyclerView.setAdapter(hotDealRecyclerAdapter);
 
-        hotdealData1ArrayList.add(new HotdealData1("제품 1", R.drawable.chair1));
-        hotdealData1ArrayList.add(new HotdealData1("제품 2", R.drawable.image_bed));
-        hotdealData1ArrayList.add(new HotdealData1("제품 3", R.drawable.bath4));
-        hotdealData1ArrayList.add(new HotdealData1("제품 4", R.drawable.image_deco));
+        for (int i = 7; i < 13; i++) {
+            hotdealData1ArrayList.add(new HotdealData1(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
+                    MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
+                    MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4(),MainActivity.productList.get(i).getPurchaseUrl()));
+        }
     }
 
-    private void recommend_inti(ViewGroup rootView)
+    private void recommend_init(ViewGroup rootView)
     {
         hotdeal_recyclerView2 = rootView.findViewById(R.id.hotdeal2_recycler2);
         hotdealData2ArrayList = new ArrayList<>();
@@ -167,10 +133,11 @@ public class Home extends Fragment {
         hotdeal_recyclerView2.setLayoutManager(hotdeal_linearLayoutManager2);
         hotdeal_recyclerView2.setAdapter(hotDealRecyclerAdapter2);
 
-        hotdealData2ArrayList.add(new HotdealData2("제품 1", R.drawable.image_office));
-        hotdealData2ArrayList.add(new HotdealData2("제품 2", R.drawable.image_furniture));
-        hotdealData2ArrayList.add(new HotdealData2("제품 3", R.drawable.image_textile));
-        hotdealData2ArrayList.add(new HotdealData2("제품 4", R.drawable.image_living));
+        for (int i = 13; i < 19; i++) {
+            hotdealData2ArrayList.add(new HotdealData2(MainActivity.productList.get(i).getProduct_name(), MainActivity.productList.get(i).getBrand_name(), MainActivity.productList.get(i).getPrice(), MainActivity.productList.get(i).getUrl(),
+                    MainActivity.productList.get(i).getDetails(), MainActivity.productList.get(i).getUrl2(),
+                    MainActivity.productList.get(i).getUrl3(), MainActivity.productList.get(i).getUrl4(),MainActivity.productList.get(i).getPurchaseUrl()));
+        }
 
     }
 

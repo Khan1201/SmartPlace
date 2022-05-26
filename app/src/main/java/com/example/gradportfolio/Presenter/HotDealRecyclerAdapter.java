@@ -1,6 +1,7 @@
 package com.example.gradportfolio.Presenter;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.HotdealData1;
 import com.example.gradportfolio.R;
 import com.example.gradportfolio.View.Home;
+import com.example.gradportfolio.View.MainActivity;
+import com.example.gradportfolio.View.MenuSearch;
+import com.example.gradportfolio.View.ProductDetail;
 
 import java.util.ArrayList;
 
 public class HotDealRecyclerAdapter extends RecyclerView.Adapter<HotDealRecyclerAdapter.ViewHolder> {
     ArrayList<HotdealData1> hotdealData1ArrayList;
     Home activity;
+    Intent intent;
 
     public HotDealRecyclerAdapter(ArrayList<HotdealData1> hotdealData1ArrayList, Home activity) {
         this.hotdealData1ArrayList = hotdealData1ArrayList;
@@ -33,9 +39,25 @@ public class HotDealRecyclerAdapter extends RecyclerView.Adapter<HotDealRecycler
     }
     @Override
     public void onBindViewHolder(@NonNull HotDealRecyclerAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        holder.hotdeal1_text.setText(hotdealData1ArrayList.get(position).getHotdeal1_title());
-        holder.hotdeal1_image1.setImageResource(hotdealData1ArrayList.get(position).getHotdeal1_image());
-
+        Glide.with(Home.context).load(hotdealData1ArrayList.get(position).getImageUrl()).into(holder.hotdeal1_image1);
+        holder.hotdeal1_image1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(view.getContext(), ProductDetail.class);
+                intent.putExtra("number" ,position);
+                intent.putExtra("title", hotdealData1ArrayList.get(position).getBrand_title());
+                intent.putExtra("image",hotdealData1ArrayList.get(position).getImageUrl());
+                intent.putExtra("product_name", hotdealData1ArrayList.get(position).getProductName());
+                intent.putExtra("price",hotdealData1ArrayList.get(position).getProduct_price());
+                intent.putExtra("details",hotdealData1ArrayList.get(position).getDetails());
+                intent.putExtra("image2",hotdealData1ArrayList.get(position).getImageUrl2());
+                intent.putExtra("image3",hotdealData1ArrayList.get(position).getImageUrl3());
+                intent.putExtra("image4",hotdealData1ArrayList.get(position).getImageUrl4());
+                intent.putExtra("purchase", hotdealData1ArrayList.get(position).getPurchaseUrl());
+                intent.putExtra("name","home");
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -46,13 +68,10 @@ public class HotDealRecyclerAdapter extends RecyclerView.Adapter<HotDealRecycler
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView hotdeal1_text;
         ImageView hotdeal1_image1;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            this.hotdeal1_text=itemView.findViewById(R.id.hotdeal1_text);
             this.hotdeal1_image1 = itemView.findViewById(R.id.hotdeal1_image);
 
 

@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,12 +26,12 @@ public class ProductDetail extends AppCompatActivity {
 
     private  Intent intent;
     private int number;
-    private String title, product_name, product_price, image, details, image2, image3, image4, name;
+    private String title, product_name, product_price, image, details, image2, image3, image4, name, purchase;
     private String sql;
     private Cursor c;
 
-    private Button buttonAdd;
-    private ImageView imageView1, imageView2, imageView3;
+    private Button buttonAdd,buttonPurchase;
+    private ImageView imageView1, imageView2, imageView3, imageView4;
     private TextView textView1, textView2, textView3, textView4,textView5;
 
     private Context ct;
@@ -51,12 +52,15 @@ public class ProductDetail extends AppCompatActivity {
         image3 = intent.getStringExtra("image3");
         image4 = intent.getStringExtra("image4");
         name = intent.getStringExtra("name");
+        purchase = intent.getStringExtra("purchase");
 
         imageView1 = findViewById(R.id.item_detail_image1);
         imageView2 = findViewById(R.id.item_detail_image2);
         imageView3 = findViewById(R.id.item_detail_image3);
+        imageView4 = findViewById(R.id.item_detail_image4);
 
         buttonAdd = findViewById(R.id.basket_add_button);
+        buttonPurchase = findViewById(R.id.purchase_button);
 
         textView1 = findViewById(R.id.item_detail_text1);
         textView2 = findViewById(R.id.item_detail_text2);
@@ -74,8 +78,9 @@ public class ProductDetail extends AppCompatActivity {
             textView5.setText(details);
             Glide.with(ShoppingBasket.ct).load(image2).into(imageView2);
             Glide.with(ShoppingBasket.ct).load(image3).into(imageView3);
+            Glide.with(ShoppingBasket.ct).load(image4).into(imageView4);
         }
-        else{
+        else if(name.equals("search")){
             Glide.with(MenuSearch.ct).load(image).into(imageView1);//클릭 시 가져오는 이미지
             textView1.setText(title); // 클릭 시 가져오는 타이틀
             textView2.setText(product_name); // 클릭 시 가져오는 제품 이름
@@ -84,6 +89,18 @@ public class ProductDetail extends AppCompatActivity {
             textView5.setText(details);
             Glide.with(MenuSearch.ct).load(image2).into(imageView2);
             Glide.with(MenuSearch.ct).load(image3).into(imageView3);
+            Glide.with(MenuSearch.ct).load(image4).into(imageView4);
+        }
+        else{
+            Glide.with(Home.context).load(image).into(imageView1);//클릭 시 가져오는 이미지
+            textView1.setText(title); // 클릭 시 가져오는 타이틀
+            textView2.setText(product_name); // 클릭 시 가져오는 제품 이름
+            textView3.setText(product_price);
+            textView4.setText(Currency.getInstance(Locale.KOREA).getSymbol());
+            textView5.setText(details);
+            Glide.with(Home.context).load(image2).into(imageView2);
+            Glide.with(Home.context).load(image3).into(imageView3);
+            Glide.with(Home.context).load(image4).into(imageView4);
         }
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
@@ -96,10 +113,10 @@ public class ProductDetail extends AppCompatActivity {
                 values.put("brand_name",title);
                 values.put("product_name",product_name);
                 values.put("price", product_price);
+                values.put("purchase", purchase);
 
 
-
-                sql = "select url, brand_name, product_name, price from ShoppingBasket";
+                sql = "select url, brand_name, product_name, price, purchase from ShoppingBasket";
                 c = MainActivity.db.rawQuery(sql, null);
 
                 while(c.moveToNext()){
@@ -116,6 +133,20 @@ public class ProductDetail extends AppCompatActivity {
                 }
             }
         });
+
+        buttonPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent urlintent = new Intent(Intent.ACTION_VIEW, Uri.parse(purchase));
+                    view.getContext().startActivity(urlintent);
+                }
+                catch (Exception e){
+                    Toast.makeText(view.getContext(), "데이터 연결상태를 확인하세요.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
 
