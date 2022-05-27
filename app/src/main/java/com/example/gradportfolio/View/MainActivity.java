@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void makeRequest() {
-        String url = "http://203.228.1.110:3001/data";
+        String url = "http://121.150.127.163:3000/data";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
