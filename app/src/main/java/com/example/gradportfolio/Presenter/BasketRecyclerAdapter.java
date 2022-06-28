@@ -2,14 +2,11 @@ package com.example.gradportfolio.Presenter;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -32,7 +29,7 @@ import com.example.gradportfolio.View.ProductDetail;
 import com.example.gradportfolio.View.ShoppingBasket;
 
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>
+public class BasketRecyclerAdapter extends RecyclerView.Adapter<BasketRecyclerAdapter.ItemViewHolder>
 
 {
     // adapter에 들어갈 list 입니다.
@@ -49,7 +46,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemVi
 
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml(양식)을 inflate 시킵니다.(화면에 보여불 리스트 개수만큼 inflate)
         // return 인자는 ViewHolder 입니다.
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_basket, parent, false);
         return new ItemViewHolder(view);
     }
 

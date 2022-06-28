@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void makeRequest() {
-        String url = "http://121.150.127.163:3000/data";
+        String url = "http://222.103.27.125:3000/data";
 
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Dialog dialog = new Dialog(MainActivity.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.custom_dialog);
+        dialog.setContentView(R.layout.quit_dialog);
         WebView webView = (WebView)dialog.findViewById(R.id.webView2);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {

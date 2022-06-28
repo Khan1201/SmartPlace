@@ -1,10 +1,8 @@
 package com.example.gradportfolio.Presenter;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -13,13 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gradportfolio.Model.Category_1;
+import com.example.gradportfolio.Model.CategoryData1;
 import com.example.gradportfolio.Model.MenuList;
 import com.example.gradportfolio.R;
 import com.example.gradportfolio.View.MenuSearch;
-import com.example.gradportfolio.View.ProductDetail;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SearchRecyclerAdapter2 extends RecyclerView.Adapter<SearchRecyclerAdapter2.ViewHolder> {
@@ -47,7 +43,7 @@ public class SearchRecyclerAdapter2 extends RecyclerView.Adapter<SearchRecyclerA
       holder.menu_Img.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-            intent = new Intent(v.getContext(), Category_1.class);
+            intent = new Intent(v.getContext(), CategoryData1.class);
             intent.putExtra("number" ,position);
             intent.putExtra("img_name", mList.get(position).getImgName());
 

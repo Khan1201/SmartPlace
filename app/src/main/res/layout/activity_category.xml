@@ -43,7 +43,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text1"
-        tools:listitem="@layout/category_recycler"/>
+        tools:listitem="@layout/recycle_category"/>
 
 
 

@@ -11,25 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.gradportfolio.Model.BasketData;
 import com.example.gradportfolio.Model.ProductData;
-import com.example.gradportfolio.Presenter.RecyclerAdapter;
+import com.example.gradportfolio.Presenter.BasketRecyclerAdapter;
 import com.example.gradportfolio.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class ShoppingBasket extends Fragment {
 
-    private RecyclerAdapter adapter;
+    private BasketRecyclerAdapter adapter;
     private View rootView;
     private View holderView;
     public static Context ct;
@@ -48,7 +43,7 @@ public class ShoppingBasket extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_shopping_basket, container, false);
-        holderView = inflater.inflate(R.layout.recycle_product,container,false);
+        holderView = inflater.inflate(R.layout.recycle_basket,container,false);
         ct = container.getContext();
         init();
         setSpinner();
@@ -61,7 +56,7 @@ public class ShoppingBasket extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ct);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new RecyclerAdapter();
+        adapter = new BasketRecyclerAdapter();
         recyclerView.setAdapter(adapter);
 
     }

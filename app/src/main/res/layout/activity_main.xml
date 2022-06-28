@@ -23,6 +23,6 @@
         android:layout_centerHorizontal="true"
         android:background="#fff"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/bottom_menu" />
+        app:menu="@menu/bottom_navigation" />
 
 </RelativeLayout>

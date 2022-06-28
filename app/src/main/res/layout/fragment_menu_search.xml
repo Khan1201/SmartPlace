@@ -101,7 +101,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_text"
-            tools:listitem="@layout/recyccler_search"/>
+            tools:listitem="@layout/recycle_search"/>
 
         <TextView
             android:id="@+id/search_text"

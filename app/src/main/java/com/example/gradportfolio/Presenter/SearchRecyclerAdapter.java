@@ -12,12 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.gradportfolio.Model.Category_1;
 import com.example.gradportfolio.Model.SearchData;
 import com.example.gradportfolio.R;
 import com.example.gradportfolio.View.MenuSearch;
 import com.example.gradportfolio.View.ProductDetail;
-import com.example.gradportfolio.View.ShoppingBasket;
 
 import java.util.ArrayList;
 
@@ -33,7 +31,7 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<SearchRecyclerAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyccler_search,null);
+        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_search,null);
         ViewHolder viewHolder=new ViewHolder(view);
         return viewHolder;
     }

@@ -12,21 +12,17 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.MenuList;
-import com.example.gradportfolio.Presenter.RecyclerAdapter;
 import com.example.gradportfolio.Presenter.SearchRecyclerAdapter;
 import com.example.gradportfolio.Model.SearchData;
 import com.example.gradportfolio.Presenter.SearchRecyclerAdapter2;
 import com.example.gradportfolio.R;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 
@@ -48,7 +44,7 @@ public class MenuSearch extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_menu_search1, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_menu_search, container, false);
 
         intiProduct(rootView);
 
@@ -71,11 +67,11 @@ public class MenuSearch extends Fragment {
         recyclerView2.setLayoutManager(linearLayoutManager2);
         recyclerView2.setAdapter(searchRecyclerAdapter2);
 
-        mList.add(new MenuList("욕조", R.drawable.menu_bath));
-        mList.add(new MenuList("침대", R.drawable.menu_bed));
-        mList.add(new MenuList("의자", R.drawable.menu_chair));
-        mList.add(new MenuList("책상", R.drawable.menu_table));
-        mList.add(new MenuList("가구 5",R.drawable.image_textile));
+        mList.add(new MenuList("책장", R.drawable.bookcase));
+        mList.add(new MenuList("침대", R.drawable.bed));
+        mList.add(new MenuList("의자", R.drawable.chair));
+        mList.add(new MenuList("책상", R.drawable.desktop));
+        mList.add(new MenuList("욕조",R.drawable.bath));
 
 
         searchRecyclerAdapter2.notifyDataSetChanged();

@@ -1,12 +1,12 @@
 package com.example.gradportfolio.Model;
 
-public class CategoryData {
+public class CategoryData2 {
 
     String productName;
     String brand_title;
     String product_price;
     String imageId;
-    public CategoryData(String productName, String brand_title, String product_price, String imageId)
+    public CategoryData2(String productName, String brand_title, String product_price, String imageId)
     {
         this.productName = productName;
         this.brand_title = brand_title;

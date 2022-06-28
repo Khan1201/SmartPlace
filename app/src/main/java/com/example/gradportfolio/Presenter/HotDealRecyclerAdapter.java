@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,8 +14,6 @@ import com.bumptech.glide.Glide;
 import com.example.gradportfolio.Model.HotdealData1;
 import com.example.gradportfolio.R;
 import com.example.gradportfolio.View.Home;
-import com.example.gradportfolio.View.MainActivity;
-import com.example.gradportfolio.View.MenuSearch;
 import com.example.gradportfolio.View.ProductDetail;
 
 import java.util.ArrayList;
@@ -33,7 +30,7 @@ public class HotDealRecyclerAdapter extends RecyclerView.Adapter<HotDealRecycler
     @NonNull
     @Override
     public HotDealRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.hotdeal_layout1,null);
+        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycle_recommend_product,null);
         HotDealRecyclerAdapter.ViewHolder viewHolder=new HotDealRecyclerAdapter.ViewHolder(view);
         return viewHolder;
     }
