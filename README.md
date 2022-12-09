@@ -2,18 +2,14 @@
 
 ### :exclamation: AR 모델링 인력이 없으므로, 유지보수 불가 -> 앱 배포 X :exclamation:
 
-<img width="20%" src="https://user-images.githubusercontent.com/87113698/206616861-19c035dd-858e-4a5d-9203-6aaed795e6e4.png"/> 
+<img width="25%" src="https://user-images.githubusercontent.com/87113698/206616861-19c035dd-858e-4a5d-9203-6aaed795e6e4.png"/> 
   
  <img width="20%" height=420 src="https://user-images.githubusercontent.com/87113698/206617894-675ebfc2-9745-49c3-8ee4-50010ddde7da.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="20%" height=420 src="https://user-images.githubusercontent.com/87113698/206618048-c2d8dbc4-4c39-4762-903f-84dba3add9f8.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  <img width="20%" height=420 src="https://user-images.githubusercontent.com/87113698/206618164-ee528a83-3153-4efa-975c-0032a97d28d9.png"/>
  
  <img width="20%" height=420 src="https://user-images.githubusercontent.com/87113698/206618277-0ffde409-630d-498d-9979-499ca8db4287.png"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="20%" height=420 src="https://user-images.githubusercontent.com/87113698/206618620-34512bb7-8b72-4929-bd22-f9f2cadfa24d.png"/>
 
-
 https://user-images.githubusercontent.com/87113698/206625782-2f3ff28a-fe9e-450b-a43f-beded2bce1bf.mp4
-
-
-
 
 <br>
 
